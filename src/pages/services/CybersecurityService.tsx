@@ -4,6 +4,7 @@ import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { Shield, Lock, Eye, AlertTriangle, FileKey, Fingerprint, ArrowLeft, CheckCircle } from "lucide-react";
 
 const features = [
@@ -135,11 +136,7 @@ const CybersecurityService = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border">
-        <div className="max-w-6xl mx-auto px-4 text-center text-muted-foreground text-sm">
-          © 2024 Primisys Tech. All rights reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
     </PageTransition>
   );

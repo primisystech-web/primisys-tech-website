@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -251,11 +252,7 @@ const Contact = () => {
         </AnimatedSection>
 
         {/* Footer */}
-        <footer className="py-8 border-t border-border">
-          <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
-            © 2024 PrimisysTech. All rights reserved.
-          </div>
-        </footer>
+        <Footer />
       </div>
     </PageTransition>
   );

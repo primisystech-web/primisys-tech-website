@@ -4,9 +4,9 @@ import ServiceCard from "@/components/ServiceCard";
 import StatCounter from "@/components/StatCounter";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { Code2, Brain, Settings, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 const Index = () => {
   return (
     <PageTransition>
@@ -87,13 +87,7 @@ const Index = () => {
         </AnimatedSection>
 
         {/* Footer */}
-        <footer className="py-12 border-t border-border">
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-muted-foreground text-sm">
-              © 2024 Primisys Tech. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </PageTransition>
   );

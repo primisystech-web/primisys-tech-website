@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { 
   ArrowRight, 
   Calendar, 
@@ -363,11 +364,7 @@ const Blog = () => {
         </AnimatedSection>
 
         {/* Footer */}
-        <footer className="py-12 px-4 border-t border-border">
-          <div className="container mx-auto text-center text-muted-foreground">
-            <p>&copy; {new Date().getFullYear()} NexusTech Solutions. All rights reserved.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </PageTransition>
   );

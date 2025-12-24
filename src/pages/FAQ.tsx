@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -189,7 +190,7 @@ const FAQ = () => {
 
   return (
     <PageTransition>
-    <>
+      <>
       <Helmet>
         <title>FAQ - PrimisysTech | Frequently Asked Questions</title>
         <meta name="description" content="Find answers to common questions about PrimisysTech services, pricing, security, and support. Get the information you need to make informed decisions." />
@@ -438,14 +439,8 @@ const FAQ = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 border-t border-border/50">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-sm text-muted-foreground">
-            © 2024 PrimisysTech. All rights reserved.
-          </p>
-        </div>
-      </footer>
-    </>
+      <Footer />
+      </>
     </PageTransition>
   );
 };
