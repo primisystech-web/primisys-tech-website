@@ -204,6 +204,7 @@ const Careers = () => {
   };
 
   return (
+    <PageTransition>
     <>
       <Helmet>
         <title>Careers - Join Our Team | NexaTech</title>
@@ -561,6 +562,7 @@ const Careers = () => {
         </section>
       </div>
     </>
+    </PageTransition>
   );
 };
 

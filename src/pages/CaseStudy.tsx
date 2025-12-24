@@ -393,6 +393,7 @@ const CaseStudy = () => {
   };
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{study.title} - Case Study | NexusTech Solutions</title>
@@ -679,6 +680,7 @@ const CaseStudy = () => {
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 
