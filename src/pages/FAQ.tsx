@@ -188,6 +188,7 @@ const FAQ = () => {
   const totalQuestions = faqCategories.reduce((sum, cat) => sum + cat.questions.length, 0);
 
   return (
+    <PageTransition>
     <>
       <Helmet>
         <title>FAQ - PrimisysTech | Frequently Asked Questions</title>
@@ -445,6 +446,7 @@ const FAQ = () => {
         </div>
       </footer>
     </>
+    </PageTransition>
   );
 };
 
