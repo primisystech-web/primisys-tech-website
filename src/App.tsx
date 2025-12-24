@@ -19,6 +19,7 @@ import ITConsultingService from "./pages/services/ITConsultingService";
 import DataAnalyticsService from "./pages/services/DataAnalyticsService";
 import NotFound from "./pages/NotFound";
 import FAQ from "./pages/FAQ";
+import Careers from "./pages/Careers";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/services/data-analytics" element={<DataAnalyticsService />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/careers" element={<Careers />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
