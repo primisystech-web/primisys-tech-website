@@ -2,95 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Neural Circuit Theme - Primisys Tech Design System
+   A dark, futuristic theme with circuit aesthetics and glowing accents.
+   All colors are HSL format.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    /* Primary dark backgrounds */
+    --background: 240 50% 3%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    /* Card surfaces with slight elevation */
+    --card: 240 40% 6%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    /* Popover/dropdown surfaces */
+    --popover: 240 40% 8%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Primary accent - Cyan glow */
+    --primary: 190 100% 50%;
+    --primary-foreground: 240 50% 3%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    /* Secondary accent - Electric blue */
+    --secondary: 220 100% 50%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Muted elements */
+    --muted: 240 30% 12%;
+    --muted-foreground: 215 20% 55%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Accent - Green glow for highlights */
+    --accent: 155 100% 50%;
+    --accent-foreground: 240 50% 3%;
 
-    --destructive: 0 62.8% 30.6%;
+    /* Destructive states */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Borders and inputs */
+    --border: 220 50% 20%;
+    --input: 220 50% 15%;
+    --ring: 190 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar variables */
+    --sidebar-background: 240 45% 5%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 240 50% 3%;
+    --sidebar-accent: 240 30% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 50% 20%;
+    --sidebar-ring: 190 100% 50%;
+
+    /* Custom Neural Circuit tokens */
+    --glow-primary: 190 100% 50%;
+    --glow-secondary: 155 100% 50%;
+    --glow-tertiary: 220 100% 60%;
+    --circuit-line: 190 80% 40%;
+    --glass-bg: 240 40% 8%;
+    --glass-border: 190 50% 30%;
+  }
+
+  /* Keep dark mode same as default for this theme */
+  .dark {
+    --background: 240 50% 3%;
+    --foreground: 210 40% 98%;
+    --card: 240 40% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 40% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 190 100% 50%;
+    --primary-foreground: 240 50% 3%;
+    --secondary: 220 100% 50%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 240 30% 12%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 155 100% 50%;
+    --accent-foreground: 240 50% 3%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 50% 20%;
+    --input: 220 50% 15%;
+    --ring: 190 100% 50%;
+    --sidebar-background: 240 45% 5%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 190 100% 50%;
+    --sidebar-primary-foreground: 240 50% 3%;
+    --sidebar-accent: 240 30% 12%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 50% 20%;
+    --sidebar-ring: 190 100% 50%;
   }
 }
 
@@ -99,7 +104,83 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-card/60 backdrop-blur-xl border border-glass-border/30;
+  }
+
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3),
+                0 0 40px hsl(var(--glow-primary) / 0.2),
+                0 0 60px hsl(var(--glow-primary) / 0.1);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.3),
+                0 0 40px hsl(var(--glow-secondary) / 0.2);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--glow-primary) / 0.5),
+                 0 0 20px hsl(var(--glow-primary) / 0.3),
+                 0 0 30px hsl(var(--glow-primary) / 0.2);
+  }
+
+  .text-glow-secondary {
+    text-shadow: 0 0 10px hsl(var(--glow-secondary) / 0.5),
+                 0 0 20px hsl(var(--glow-secondary) / 0.3);
+  }
+
+  /* Circuit line styling */
+  .circuit-line {
+    stroke: hsl(var(--circuit-line));
+    stroke-width: 1;
+    fill: none;
+  }
+
+  .circuit-node {
+    fill: hsl(var(--glow-primary));
+    filter: drop-shadow(0 0 4px hsl(var(--glow-primary) / 0.8));
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
+  }
+
+  /* Hexagon mask */
+  .hexagon {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+}
+
+@layer utilities {
+  /* Animation delays */
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  .animation-delay-800 {
+    animation-delay: 800ms;
+  }
+  .animation-delay-1000 {
+    animation-delay: 1000ms;
   }
 }
