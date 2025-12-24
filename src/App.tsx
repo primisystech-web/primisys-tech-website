@@ -20,6 +20,7 @@ import DataAnalyticsService from "./pages/services/DataAnalyticsService";
 import NotFound from "./pages/NotFound";
 import FAQ from "./pages/FAQ";
 import Careers from "./pages/Careers";
+import CaseStudy from "./pages/CaseStudy";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/case-study/:slug" element={<CaseStudy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

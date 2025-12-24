@@ -23,6 +23,7 @@ import {
 const caseStudies = [
   {
     id: 1,
+    slug: "ai-healthcare-diagnostics",
     title: "AI-Powered Healthcare Diagnostics Platform",
     client: "MedTech Solutions",
     industry: "Healthcare",
@@ -41,6 +42,7 @@ const caseStudies = [
   },
   {
     id: 2,
+    slug: "enterprise-cloud-migration",
     title: "Enterprise Cloud Migration",
     client: "Global Finance Corp",
     industry: "Finance",
@@ -59,6 +61,7 @@ const caseStudies = [
   },
   {
     id: 3,
+    slug: "ecommerce-platform-redesign",
     title: "E-Commerce Platform Redesign",
     client: "RetailMax",
     industry: "Retail",
@@ -77,6 +80,7 @@ const caseStudies = [
   },
   {
     id: 4,
+    slug: "smart-manufacturing-iot",
     title: "Smart Manufacturing IoT System",
     client: "IndustrialTech",
     industry: "Manufacturing",
@@ -95,6 +99,7 @@ const caseStudies = [
   },
   {
     id: 5,
+    slug: "cybersecurity-infrastructure",
     title: "Cybersecurity Infrastructure Overhaul",
     client: "SecureBank",
     industry: "Finance",
@@ -113,6 +118,7 @@ const caseStudies = [
   },
   {
     id: 6,
+    slug: "edtech-learning-platform",
     title: "EdTech Learning Management System",
     client: "EduGlobal",
     industry: "Education",
@@ -290,9 +296,11 @@ const Portfolio = () => {
                       ))}
                     </div>
                     
-                    <Button variant="outline" className="group">
-                      View Full Case Study
-                      <ExternalLink className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    <Button variant="outline" className="group" asChild>
+                      <Link to={`/case-study/${study.slug}`}>
+                        View Full Case Study
+                        <ExternalLink className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                      </Link>
                     </Button>
                   </div>
                 </div>
@@ -346,9 +354,11 @@ const Portfolio = () => {
                       </div>
                     ))}
                   </div>
-                  <Button variant="ghost" size="sm" className="w-full group/btn">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                  <Button variant="ghost" size="sm" className="w-full group/btn" asChild>
+                    <Link to={`/case-study/${study.slug}`}>
+                      Learn More
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover/btn:translate-x-1" />
+                    </Link>
                   </Button>
                 </div>
               </GlassCard>
