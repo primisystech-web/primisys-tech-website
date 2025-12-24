@@ -190,9 +190,11 @@ const Blog = () => {
                 <Badge variant="secondary" className="w-fit mb-4">
                   {featuredPost.category}
                 </Badge>
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 hover:text-primary transition-colors cursor-pointer">
-                  {featuredPost.title}
-                </h3>
+                <Link to={`/blog/${featuredPost.id}`}>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-4 hover:text-primary transition-colors cursor-pointer">
+                    {featuredPost.title}
+                  </h3>
+                </Link>
                 <p className="text-muted-foreground mb-6 text-lg">
                   {featuredPost.excerpt}
                 </p>
@@ -220,9 +222,11 @@ const Blog = () => {
                   ))}
                 </div>
                 
-                <Button className="w-fit group">
-                  Read Article
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                <Button className="w-fit group" asChild>
+                  <Link to={`/blog/${featuredPost.id}`}>
+                    Read Article
+                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -239,7 +243,8 @@ const Blog = () => {
               <h2 className="text-2xl font-bold mb-8">Latest Articles</h2>
               <div className="grid md:grid-cols-2 gap-6">
                 {articles.map((article) => (
-                  <GlassCard key={article.id} className="overflow-hidden group">
+                  <Link key={article.id} to={`/blog/${article.id}`}>
+                  <GlassCard className="overflow-hidden group h-full">
                     <div className="relative h-48 overflow-hidden">
                       <img 
                         src={article.image} 
@@ -270,6 +275,7 @@ const Blog = () => {
                       </div>
                     </div>
                   </GlassCard>
+                  </Link>
                 ))}
               </div>
               
@@ -319,7 +325,7 @@ const Blog = () => {
                 <h3 className="text-lg font-bold mb-4">Trending This Week</h3>
                 <div className="space-y-4">
                   {articles.slice(0, 4).map((article, index) => (
-                    <div key={article.id} className="flex gap-3 group cursor-pointer">
+                    <Link key={article.id} to={`/blog/${article.id}`} className="flex gap-3 group cursor-pointer">
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
                         {index + 1}
                       </div>
@@ -329,7 +335,7 @@ const Blog = () => {
                         </h4>
                         <p className="text-xs text-muted-foreground mt-1">{article.readTime}</p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </GlassCard>
