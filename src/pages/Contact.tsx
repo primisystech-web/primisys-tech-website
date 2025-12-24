@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
+import PageTransition from "@/components/PageTransition";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -77,179 +79,185 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center animate-fade-in">
-            <span className="text-primary text-sm font-medium tracking-wider uppercase">
-              Get in Touch
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
-              Contact Us
-            </h1>
-            <p className="text-lg text-muted-foreground">
-              Have a project in mind? We'd love to hear from you. Send us a message 
-              and we'll respond as soon as possible.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form & Info */}
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Contact Form */}
-            <div className="animate-fade-in">
-              <GlassCard className="p-8">
-                <h2 className="text-2xl font-semibold text-foreground mb-6">
-                  Send us a Message
-                </h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="How can we help?"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Tell us about your project..."
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </GlassCard>
+        {/* Hero Section */}
+        <section className="pt-32 pb-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-3xl mx-auto text-center">
+              <span className="text-primary text-sm font-medium tracking-wider uppercase">
+                Get in Touch
+              </span>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mt-4 mb-6">
+                Contact Us
+              </h1>
+              <p className="text-lg text-muted-foreground">
+                Have a project in mind? We'd love to hear from you. Send us a message 
+                and we'll respond as soon as possible.
+              </p>
             </div>
+          </div>
+        </section>
 
-            {/* Contact Information */}
-            <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              <div>
-                <h2 className="text-2xl font-semibold text-foreground mb-6">
-                  Contact Information
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  Reach out to us through any of the following channels. Our team 
-                  is ready to assist you with your technology needs.
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <GlassCard key={index} className="p-5">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary/10 rounded-lg">
-                        <info.icon className="w-5 h-5 text-primary" />
+        {/* Contact Form & Info */}
+        <AnimatedSection>
+          <section className="py-16">
+            <div className="container mx-auto px-4">
+              <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                {/* Contact Form */}
+                <div>
+                  <GlassCard className="p-8">
+                    <h2 className="text-2xl font-semibold text-foreground mb-6">
+                      Send us a Message
+                    </h2>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="name">Name</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            placeholder="Your name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="email">Email</Label>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            placeholder="your@email.com"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-medium text-foreground mb-1">
-                          {info.title}
-                        </h3>
-                        {info.details.map((detail, i) => (
-                          <p key={i} className="text-sm text-muted-foreground">
-                            {detail}
-                          </p>
-                        ))}
+                      <div className="space-y-2">
+                        <Label htmlFor="subject">Subject</Label>
+                        <Input
+                          id="subject"
+                          name="subject"
+                          placeholder="How can we help?"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                        />
                       </div>
-                    </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="message">Message</Label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          placeholder="Tell us about your project..."
+                          rows={5}
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <Button type="submit" className="w-full" disabled={isSubmitting}>
+                        {isSubmitting ? (
+                          "Sending..."
+                        ) : (
+                          <>
+                            <Send className="w-4 h-4 mr-2" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                    </form>
                   </GlassCard>
-                ))}
-              </div>
+                </div>
 
-              {/* Social Links */}
-              <div className="pt-6">
-                <h3 className="font-medium text-foreground mb-4">Follow Us</h3>
-                <div className="flex gap-3">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="p-3 bg-card border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors duration-200"
-                    >
-                      <social.icon className="w-5 h-5" />
-                    </a>
-                  ))}
+                {/* Contact Information */}
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="text-2xl font-semibold text-foreground mb-6">
+                      Contact Information
+                    </h2>
+                    <p className="text-muted-foreground mb-8">
+                      Reach out to us through any of the following channels. Our team 
+                      is ready to assist you with your technology needs.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    {contactInfo.map((info, index) => (
+                      <GlassCard key={index} className="p-5">
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 bg-primary/10 rounded-lg">
+                            <info.icon className="w-5 h-5 text-primary" />
+                          </div>
+                          <div>
+                            <h3 className="font-medium text-foreground mb-1">
+                              {info.title}
+                            </h3>
+                            {info.details.map((detail, i) => (
+                              <p key={i} className="text-sm text-muted-foreground">
+                                {detail}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      </GlassCard>
+                    ))}
+                  </div>
+
+                  {/* Social Links */}
+                  <div className="pt-6">
+                    <h3 className="font-medium text-foreground mb-4">Follow Us</h3>
+                    <div className="flex gap-3">
+                      {socialLinks.map((social, index) => (
+                        <a
+                          key={index}
+                          href={social.href}
+                          aria-label={social.label}
+                          className="p-3 bg-card border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors duration-200"
+                        >
+                          <social.icon className="w-5 h-5" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+          </section>
+        </AnimatedSection>
+
+        {/* CTA Section */}
+        <AnimatedSection delay={0.1}>
+          <section className="py-16 bg-card/50">
+            <div className="container mx-auto px-4 text-center">
+              <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
+                Ready to Start Your Project?
+              </h2>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+                Schedule a free consultation with our experts to discuss your 
+                technology needs and explore how we can help.
+              </p>
+              <Button size="lg">
+                Schedule a Call
+              </Button>
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* Footer */}
+        <footer className="py-8 border-t border-border">
+          <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
+            © 2024 PrimisysTech. All rights reserved.
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-card/50">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Schedule a free consultation with our experts to discuss your 
-            technology needs and explore how we can help.
-          </p>
-          <Button size="lg">
-            Schedule a Call
-          </Button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 border-t border-border">
-        <div className="container mx-auto px-4 text-center text-muted-foreground text-sm">
-          © 2024 PrimisysTech. All rights reserved.
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </PageTransition>
   );
 };
 
