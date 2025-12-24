@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Contact from "./pages/Contact";
 import AIService from "./pages/services/AIService";
 import CloudService from "./pages/services/CloudService";
 import CybersecurityService from "./pages/services/CybersecurityService";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/services/software-development" element={<SoftwareDevService />} />
           <Route path="/services/it-consulting" element={<ITConsultingService />} />
           <Route path="/services/data-analytics" element={<DataAnalyticsService />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
