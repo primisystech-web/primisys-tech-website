@@ -1,12 +1,97 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from "@/components/Navigation";
+import HeroSection from "@/components/HeroSection";
+import CircuitBackground from "@/components/CircuitBackground";
+import HexagonParticles from "@/components/HexagonParticles";
+import ServiceCard from "@/components/ServiceCard";
+import StatCounter from "@/components/StatCounter";
+import { Code2, Brain, Settings, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Background effects */}
+      <CircuitBackground />
+      <HexagonParticles />
+
+      {/* Navigation */}
+      <Navigation />
+
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Stats Section */}
+      <section className="relative py-20 border-t border-border/30">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <StatCounter end={150} suffix="+" label="Projects Delivered" delay={0} />
+            <StatCounter end={50} suffix="+" label="Happy Clients" delay={200} />
+            <StatCounter end={10} suffix="+" label="Years Experience" delay={400} />
+            <StatCounter end={99} suffix="%" label="Client Satisfaction" delay={600} />
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="relative py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+              <span className="text-foreground">Our </span>
+              <span className="gradient-text">Services</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Comprehensive technology solutions tailored to accelerate your digital transformation
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <ServiceCard
+              icon={Code2}
+              title="Software Development"
+              description="Custom web and mobile applications built with cutting-edge technologies for optimal performance and scalability."
+              delay={0}
+            />
+            <ServiceCard
+              icon={Brain}
+              title="AI & Data Solutions"
+              description="Harness the power of artificial intelligence and data analytics to drive intelligent business decisions."
+              delay={200}
+            />
+            <ServiceCard
+              icon={Settings}
+              title="IT Consulting"
+              description="Strategic technology consulting to optimize your infrastructure and accelerate digital transformation."
+              delay={400}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-24 border-t border-border/30">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
+            Ready to <span className="gradient-text">Transform</span> Your Business?
+          </h2>
+          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+            Let's discuss how we can help you achieve your technology goals.
+          </p>
+          <Button variant="hero" size="xl" className="group">
+            Get In Touch
+            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="relative py-12 border-t border-border/30">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-muted-foreground text-sm">
+            © 2024 Primisys Tech. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
