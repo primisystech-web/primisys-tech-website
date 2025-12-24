@@ -8,6 +8,7 @@ import Team from "./pages/Team";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import Portfolio from "./pages/Portfolio";
 import AIService from "./pages/services/AIService";
 import CloudService from "./pages/services/CloudService";
 import CybersecurityService from "./pages/services/CybersecurityService";
@@ -26,6 +27,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/team" element={<Team />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
