@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { 
   Brain, 
@@ -127,11 +128,7 @@ const Services = () => {
         </AnimatedSection>
 
         {/* Footer */}
-        <footer className="py-8 border-t border-border">
-          <div className="max-w-6xl mx-auto px-4 text-center text-muted-foreground text-sm">
-            © 2024 Primisys Tech. All rights reserved.
-          </div>
-        </footer>
+        <Footer />
       </div>
     </PageTransition>
   );
