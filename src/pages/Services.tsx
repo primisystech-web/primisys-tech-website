@@ -3,6 +3,7 @@ import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
 import PageTransition from "@/components/PageTransition";
 import AnimatedSection from "@/components/AnimatedSection";
+import MethodologyWorkflow from "@/components/MethodologyWorkflow";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { 
@@ -107,6 +108,9 @@ const Services = () => {
             </div>
           </section>
         </AnimatedSection>
+
+        {/* Methodology Workflow */}
+        <MethodologyWorkflow />
 
         {/* CTA Section */}
         <AnimatedSection delay={0.1}>
