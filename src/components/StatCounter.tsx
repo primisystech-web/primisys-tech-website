@@ -52,12 +52,10 @@ export const StatCounter = ({
 
   return (
     <div className={cn("text-center opacity-0", started && "animate-fade-in")}>
-      <div className="font-display text-4xl md:text-5xl font-bold text-glow mb-2">
-        <span className="text-primary">{prefix}</span>
-        <span className="gradient-text">{count}</span>
-        <span className="text-primary">{suffix}</span>
+      <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
+        <span className="text-primary">{prefix}{count}{suffix}</span>
       </div>
-      <p className="text-muted-foreground text-sm uppercase tracking-wider">
+      <p className="text-muted-foreground text-sm">
         {label}
       </p>
     </div>

@@ -36,24 +36,21 @@ export const Navigation = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
-          : "bg-transparent py-6"
+          ? "bg-background/90 backdrop-blur-md border-b border-border py-3"
+          : "bg-transparent py-5"
       )}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="relative">
-            <img
-              src={logo}
-              alt="Primisys Tech"
-              className="h-10 w-10 rounded-lg object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 rounded-lg bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </div>
-          <span className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+          <img
+            src={logo}
+            alt="Primisys Tech"
+            className="h-9 w-9 rounded-md object-cover"
+          />
+          <span className="text-lg font-semibold text-foreground">
             Primisys<span className="text-primary">Tech</span>
           </span>
         </Link>
@@ -65,10 +62,10 @@ export const Navigation = () => {
               key={link.href}
               to={link.href}
               className={cn(
-                "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300",
+                "px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200",
                 location.pathname === link.href
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "text-primary"
+                  : "text-muted-foreground hover:text-foreground"
               )}
             >
               {link.label}
@@ -78,7 +75,7 @@ export const Navigation = () => {
 
         {/* CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button variant="glow" size="sm">
+          <Button size="sm">
             Get Started
           </Button>
         </div>
@@ -96,26 +93,26 @@ export const Navigation = () => {
       {/* Mobile Menu */}
       <div
         className={cn(
-          "lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/50 overflow-hidden transition-all duration-300",
+          "lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border overflow-hidden transition-all duration-300",
           isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="container mx-auto px-4 py-4 flex flex-col gap-2">
+        <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               to={link.href}
               className={cn(
-                "px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300",
+                "px-4 py-3 text-sm font-medium rounded-md transition-colors duration-200",
                 location.pathname === link.href
-                  ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  ? "text-primary bg-primary/5"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted"
               )}
             >
               {link.label}
             </Link>
           ))}
-          <Button variant="glow" className="mt-4">
+          <Button className="mt-4">
             Get Started
           </Button>
         </div>
