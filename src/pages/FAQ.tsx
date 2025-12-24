@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
+import PageTransition from "@/components/PageTransition";
+import AnimatedSection from "@/components/AnimatedSection";
 import { GlassCard } from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

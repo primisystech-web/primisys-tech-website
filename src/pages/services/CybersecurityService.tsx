@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
 import { Button } from "@/components/ui/button";
+import PageTransition from "@/components/PageTransition";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Shield, Lock, Eye, AlertTriangle, FileKey, Fingerprint, ArrowLeft, CheckCircle } from "lucide-react";
 
 const features = [
@@ -38,6 +40,7 @@ const benefits = [
 
 const CybersecurityService = () => {
   return (
+    <PageTransition>
     <div className="min-h-screen bg-background">
       <Navigation />
       
@@ -138,6 +141,7 @@ const CybersecurityService = () => {
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 

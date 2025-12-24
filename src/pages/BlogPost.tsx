@@ -2,6 +2,8 @@ import { Helmet } from "react-helmet";
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
+import PageTransition from "@/components/PageTransition";
+import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -188,6 +190,7 @@ const BlogPost = () => {
   }
 
   return (
+    <PageTransition>
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>{post.title} - NexusTech Blog</title>
@@ -458,6 +461,7 @@ const BlogPost = () => {
         </div>
       </footer>
     </div>
+    </PageTransition>
   );
 };
 
