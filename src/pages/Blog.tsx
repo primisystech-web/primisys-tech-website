@@ -240,11 +240,11 @@ const Blog = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 {articles.map((article) => (
                   <GlassCard key={article.id} className="overflow-hidden group">
-                    <div className="relative h-48">
+                    <div className="relative h-48 overflow-hidden">
                       <img 
                         src={article.image} 
                         alt={article.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                       <Badge className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm text-foreground text-xs">

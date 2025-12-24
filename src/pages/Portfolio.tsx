@@ -315,11 +315,11 @@ const Portfolio = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.filter(c => !c.featured).map((study) => (
               <GlassCard key={study.id} className="overflow-hidden group">
-                <div className="relative h-48">
+                <div className="relative h-48 overflow-hidden">
                   <img 
                     src={study.image} 
                     alt={study.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
                   <Badge className="absolute top-4 left-4 bg-background/80 backdrop-blur-sm text-foreground">
