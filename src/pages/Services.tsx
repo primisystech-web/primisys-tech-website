@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
@@ -58,6 +59,10 @@ const services = [
 const Services = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>Our Services | Primisys Tech - Technology Solutions</title>
+        <meta name="description" content="Explore Primisys Tech's comprehensive technology services including AI, Cloud Solutions, Cybersecurity, Software Development, IT Consulting, and Data Analytics." />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
         

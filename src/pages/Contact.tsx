@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 import { Navigation } from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
 import PageTransition from "@/components/PageTransition";
@@ -81,6 +82,10 @@ const Contact = () => {
 
   return (
     <PageTransition>
+      <Helmet>
+        <title>Contact Us | Primisys Tech - Get in Touch</title>
+        <meta name="description" content="Contact Primisys Tech for your technology needs. Reach out to discuss your project, get a consultation, or learn more about our services." />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
 

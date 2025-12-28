@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
@@ -51,6 +52,10 @@ const milestones = [
 const About = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>About Us | Primisys Tech - Our Story & Values</title>
+        <meta name="description" content="Learn about Primisys Tech's mission, vision, and values. Discover our journey from a small team to a trusted technology partner serving clients worldwide." />
+      </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
 

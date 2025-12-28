@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
@@ -42,6 +43,10 @@ const benefits = [
 const AIService = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>AI & Machine Learning Services | Primisys Tech</title>
+        <meta name="description" content="Transform your business with AI and machine learning solutions. Intelligent automation, predictive analytics, NLP, and computer vision services from Primisys Tech." />
+      </Helmet>
     <div className="min-h-screen bg-background">
       <Navigation />
       

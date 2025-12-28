@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import GlassCard from "@/components/GlassCard";
@@ -42,6 +43,10 @@ const benefits = [
 const ITConsultingService = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>IT Consulting Services | Primisys Tech</title>
+        <meta name="description" content="Strategic IT consulting services. Digital transformation, technology assessment, and process optimization from Primisys Tech." />
+      </Helmet>
     <div className="min-h-screen bg-background">
       <Navigation />
       

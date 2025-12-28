@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import ServiceCard from "@/components/ServiceCard";
@@ -7,9 +8,14 @@ import AnimatedSection from "@/components/AnimatedSection";
 import Footer from "@/components/Footer";
 import { Code2, Brain, Settings, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const Index = () => {
   return (
     <PageTransition>
+      <Helmet>
+        <title>Primisys Tech | Innovative Technology Solutions</title>
+        <meta name="description" content="Primisys Tech - Leading provider of Software Development, AI & Data Solutions, and IT Consulting services. Building tomorrow's technology today." />
+      </Helmet>
       <div className="min-h-screen bg-background">
         {/* Navigation */}
         <Navigation />
