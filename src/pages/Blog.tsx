@@ -120,8 +120,8 @@ const Blog = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>Blog - NexusTech Solutions</title>
-          <meta name="description" content="Insights, tutorials, and industry perspectives from the NexusTech team on technology trends and best practices." />
+          <title>Blog - Primisys Tech</title>
+          <meta name="description" content="Insights, tutorials, and industry perspectives from the Primisys Tech team on technology trends and best practices." />
         </Helmet>
         
         <Navigation />

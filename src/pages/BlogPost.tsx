@@ -194,7 +194,7 @@ const BlogPost = () => {
     <PageTransition>
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{post.title} - NexusTech Blog</title>
+        <title>{post.title} - Primisys Tech Blog</title>
         <meta name="description" content={post.excerpt} />
       </Helmet>
       
