@@ -78,7 +78,7 @@ const caseStudiesData = [
       "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&h=500&fit=crop"
     ],
     testimonial: {
-      quote: "NexusTech transformed our diagnostic capabilities completely. Their AI solution has become the backbone of our diagnostic process, enabling us to serve more patients with greater accuracy than ever before.",
+      quote: "Primisys Tech transformed our diagnostic capabilities completely. Their AI solution has become the backbone of our diagnostic process, enabling us to serve more patients with greater accuracy than ever before.",
       author: "Dr. Sarah Chen",
       role: "Chief Medical Officer",
       company: "MedTech Solutions"
@@ -132,7 +132,7 @@ const caseStudiesData = [
       "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop"
     ],
     testimonial: {
-      quote: "The migration was seamless. We didn't lose a single minute of service, which for a bank processing billions daily, is absolutely critical. NexusTech's expertise gave us confidence throughout the entire process.",
+      quote: "The migration was seamless. We didn't lose a single minute of service, which for a bank processing billions daily, is absolutely critical. Primisys Tech's expertise gave us confidence throughout the entire process.",
       author: "Michael Rodriguez",
       role: "CTO",
       company: "Global Finance Corp"
@@ -186,7 +186,7 @@ const caseStudiesData = [
       "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=500&fit=crop"
     ],
     testimonial: {
-      quote: "Our conversion rates speak for themselves. NexusTech didn't just build a platform, they built a revenue engine. The ROI was visible within the first month of launch.",
+      quote: "Our conversion rates speak for themselves. Primisys Tech didn't just build a platform, they built a revenue engine. The ROI was visible within the first month of launch.",
       author: "Emma Thompson",
       role: "VP of Digital",
       company: "RetailMax"
@@ -294,7 +294,7 @@ const caseStudiesData = [
       "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop"
     ],
     testimonial: {
-      quote: "NexusTech's security transformation has given us and our customers complete confidence. We've gone from being reactive to being proactively secure. The investment has paid for itself many times over.",
+      quote: "Primisys Tech's security transformation has given us and our customers complete confidence. We've gone from being reactive to being proactively secure. The investment has paid for itself many times over.",
       author: "David Park",
       role: "CISO",
       company: "SecureBank"
@@ -397,7 +397,7 @@ const CaseStudy = () => {
     <PageTransition>
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>{study.title} - Case Study | NexusTech Solutions</title>
+        <title>{study.title} - Case Study | Primisys Tech</title>
         <meta name="description" content={study.overview} />
       </Helmet>
       

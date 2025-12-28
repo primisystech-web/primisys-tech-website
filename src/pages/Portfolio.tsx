@@ -142,7 +142,7 @@ const caseStudies = [
 
 const testimonials = [
   {
-    quote: "NexusTech transformed our operations completely. Their AI solution has become the backbone of our diagnostic process.",
+    quote: "Primisys Tech transformed our operations completely. Their AI solution has become the backbone of our diagnostic process.",
     author: "Dr. Sarah Chen",
     role: "Chief Medical Officer",
     company: "MedTech Solutions"
@@ -154,7 +154,7 @@ const testimonials = [
     company: "Global Finance Corp"
   },
   {
-    quote: "Our conversion rates speak for themselves. NexusTech didn't just build a platform, they built a revenue engine.",
+    quote: "Our conversion rates speak for themselves. Primisys Tech didn't just build a platform, they built a revenue engine.",
     author: "Emma Thompson",
     role: "VP of Digital",
     company: "RetailMax"
@@ -175,7 +175,7 @@ const Portfolio = () => {
     <PageTransition>
       <div className="min-h-screen bg-background">
         <Helmet>
-          <title>Portfolio - NexusTech Solutions</title>
+          <title>Portfolio - Primisys Tech</title>
           <meta name="description" content="Explore our portfolio of successful projects and case studies across various industries." />
         </Helmet>
         
