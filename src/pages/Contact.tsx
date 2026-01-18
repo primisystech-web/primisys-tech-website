@@ -25,17 +25,17 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    details: ["123 Tech Boulevard", "Silicon Valley, CA 94025"],
+    details: ["House #379 Street #34-f I9/4", "Islamabad, Pakistan"],
   },
   {
     icon: Phone,
     title: "Phone",
-    details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+    details: ["+92-303-9912110", "+92-303-9912115", "+92-303-9912118"],
   },
   {
     icon: Mail,
     title: "Email",
-    details: ["info@primisystech.com", "support@primisystech.com"],
+    details: ["contact@primisystech.com"],
   },
   {
     icon: Clock,
