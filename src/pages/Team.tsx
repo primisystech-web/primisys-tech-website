@@ -11,81 +11,81 @@ import { Link } from "react-router-dom";
 
 const teamMembers = [
   {
-    name: "Alexandra Chen",
+    name: "Daniyal Faraz",
     role: "CEO & Founder",
-    bio: "With over 20 years of experience in technology leadership, Alexandra founded TechCorp with a vision to democratize enterprise technology for businesses of all sizes.",
+    bio: "With over 5 years of experience in technology leadership, Daniyal founded Primisys Tech with a vision to democratize enterprise technology for businesses of all sizes.",
     image: "",
-    initials: "AC",
+    initials: "DF",
     linkedin: "#",
     twitter: "#",
-    email: "alexandra@techcorp.com"
+    email: "daniyalfaraz2003@gmail.com"
   },
   {
-    name: "Marcus Williams",
+    name: "Mustafa Faraz",
     role: "Chief Technology Officer",
-    bio: "Marcus brings deep expertise in cloud architecture and AI systems, having previously led engineering teams at major tech companies.",
+    bio: "Mustafa brings deep expertise in cloud architecture and AI systems, having previously led engineering teams at major tech companies.",
     image: "",
-    initials: "MW",
+    initials: "MF",
     linkedin: "#",
     twitter: "#",
-    email: "marcus@techcorp.com"
+    email: "mustafafaraz87@gmail.com"
   },
   {
-    name: "Sarah Johnson",
+    name: "Abdullah Amin",
     role: "VP of Engineering",
-    bio: "Sarah oversees our software development teams, ensuring we deliver cutting-edge solutions that exceed client expectations.",
+    bio: "Abdullah oversees our software development teams, ensuring we deliver cutting-edge solutions that exceed client expectations.",
     image: "",
-    initials: "SJ",
+    initials: "AA",
     linkedin: "#",
     twitter: "#",
     email: "sarah@techcorp.com"
   },
   {
-    name: "David Kim",
+    name: "Abdul Ghufran",
     role: "Head of Cybersecurity",
-    bio: "A certified security expert with experience in both offensive and defensive security, David keeps our clients protected from evolving threats.",
+    bio: "A certified security expert with experience in both offensive and defensive security, Ghufran keeps our clients protected from evolving threats.",
     image: "",
-    initials: "DK",
+    initials: "AG",
     linkedin: "#",
     twitter: "#",
     email: "david@techcorp.com"
   },
   {
-    name: "Emily Rodriguez",
+    name: "Aleena Babar",
     role: "Director of AI & ML",
-    bio: "Emily leads our artificial intelligence initiatives, transforming complex data into actionable insights for our clients.",
+    bio: "Aleena leads our artificial intelligence initiatives, transforming complex data into actionable insights for our clients.",
     image: "",
-    initials: "ER",
+    initials: "AB",
     linkedin: "#",
     twitter: "#",
     email: "emily@techcorp.com"
   },
   {
-    name: "James Thompson",
+    name: "Muhammad Hassaan Noman",
     role: "Head of Cloud Solutions",
-    bio: "James architects scalable cloud infrastructure that powers businesses across industries, specializing in hybrid and multi-cloud strategies.",
+    bio: "Hassaan architects scalable cloud infrastructure that powers businesses across industries, specializing in hybrid and multi-cloud strategies.",
     image: "",
-    initials: "JT",
+    initials: "MN",
     linkedin: "#",
     twitter: "#",
     email: "james@techcorp.com"
   },
   {
-    name: "Lisa Patel",
+    name: "Arslan Ali",
     role: "Director of Consulting",
-    bio: "Lisa guides our consulting practice, helping clients navigate digital transformation with strategic insights and hands-on support.",
+    bio: "Arslan guides our consulting practice, helping clients navigate digital transformation with strategic insights and hands-on support.",
     image: "",
-    initials: "LP",
+    initials: "AA",
     linkedin: "#",
     twitter: "#",
     email: "lisa@techcorp.com"
   },
   {
-    name: "Michael Brown",
+    name: "Farhan Ali",
     role: "Head of Data Analytics",
-    bio: "Michael turns raw data into business value, leading our analytics team in delivering insights that drive strategic decisions.",
+    bio: "Farhan turns raw data into business value, leading our analytics team in delivering insights that drive strategic decisions.",
     image: "",
-    initials: "MB",
+    initials: "FA",
     linkedin: "#",
     twitter: "#",
     email: "michael@techcorp.com"

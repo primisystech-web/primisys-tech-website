@@ -28,9 +28,9 @@ const Index = () => {
           <section className="py-20 border-t border-border">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <StatCounter end={150} suffix="+" label="Projects Delivered" delay={0} />
-                <StatCounter end={50} suffix="+" label="Happy Clients" delay={100} />
-                <StatCounter end={10} suffix="+" label="Years Experience" delay={200} />
+                <StatCounter end={20} suffix="+" label="Projects Delivered" delay={0} />
+                <StatCounter end={10} suffix="+" label="Happy Clients" delay={100} />
+                <StatCounter end={3} suffix="+" label="Years Experience" delay={200} />
                 <StatCounter end={99} suffix="%" label="Client Satisfaction" delay={300} />
               </div>
             </div>

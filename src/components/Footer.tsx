@@ -116,11 +116,13 @@ const Footer = () => {
                   className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+1 (234) 567-890</span>
+                  <span>+92-303-9912110</span>
+                  <span>+92-303-9912115</span>
+                  <span>+92-303-9912118</span>
                 </a>
                 <div className="flex items-center gap-3 text-muted-foreground">
                   <MapPin className="w-4 h-4 shrink-0" />
-                  <span>123 Tech Boulevard, Silicon Valley, CA 94025</span>
+                  <span>House #379 Street #34-f I9/4 Islamabad, Pakistan</span>
                 </div>
               </div>
             </div>
@@ -181,18 +183,7 @@ const Footer = () => {
         {/* Trust Badges & Certifications */}
         <div className="border-t border-border">
           <div className="container mx-auto px-4 py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex flex-wrap items-center justify-center gap-6">
-                {certifications.map((cert, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-lg border border-border"
-                  >
-                    <cert.icon className="w-5 h-5 text-primary" />
-                    <span className="text-sm text-foreground font-medium">{cert.label}</span>
-                  </div>
-                ))}
-              </div>
+            <div className="flex flex-col md:flex-row items-end justify-between gap-6">
               
               {/* Social Links */}
               <div className="flex items-center gap-4">
