@@ -16,7 +16,7 @@ const Index = () => {
         <title>Primisys Tech | Innovative Technology Solutions</title>
         <meta name="description" content="Primisys Tech - Leading provider of Software Development, AI & Data Solutions, and IT Consulting services. Building tomorrow's technology today." />
       </Helmet>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background overflow-x-hidden">
         {/* Navigation */}
         <Navigation />
 
