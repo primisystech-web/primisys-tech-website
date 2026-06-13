@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { 
   Brain, 
   Cloud, 
-  Shield, 
   Code, 
   Users, 
   BarChart3,
@@ -30,12 +29,7 @@ const services = [
     description: "Scalable, secure cloud infrastructure designed for modern enterprises.",
     href: "/services/cloud",
   },
-  {
-    icon: Shield,
-    title: "Cybersecurity",
-    description: "Protect your digital assets with enterprise-grade security solutions.",
-    href: "/services/cybersecurity",
-  },
+
   {
     icon: Code,
     title: "Software Development",
@@ -78,7 +72,7 @@ const Services = () => {
               <span className="text-primary">Modern Business</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              From AI-powered automation to robust cybersecurity, we deliver comprehensive 
+              From AI-powered automation to custom software development, we deliver comprehensive 
               technology services that drive innovation and growth.
             </p>
           </div>
@@ -88,11 +82,11 @@ const Services = () => {
         <AnimatedSection>
           <section className="py-16 px-4">
             <div className="max-w-6xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="flex flex-wrap justify-center gap-6">
                 {services.map((service) => (
-                  <Link key={service.title} to={service.href}>
+                  <Link key={service.title} to={service.href} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex">
                     <GlassCard 
-                      className="p-8 h-full group cursor-pointer"
+                      className="p-8 w-full group cursor-pointer flex flex-col"
                     >
                       <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/15 transition-colors">
                         <service.icon className="w-7 h-7 text-primary" />
@@ -128,8 +122,8 @@ const Services = () => {
                 <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
                   Let's discuss how our technology solutions can help you achieve your goals.
                 </p>
-                <Button size="lg">
-                  Schedule a Consultation
+                <Button size="lg" asChild>
+                  <Link to="/contact">Schedule a Consultation</Link>
                 </Button>
               </GlassCard>
             </div>

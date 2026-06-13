@@ -14,7 +14,6 @@ import Portfolio from "./pages/Portfolio";
 
 import AIService from "./pages/services/AIService";
 import CloudService from "./pages/services/CloudService";
-import CybersecurityService from "./pages/services/CybersecurityService";
 import SoftwareDevService from "./pages/services/SoftwareDevService";
 import ITConsultingService from "./pages/services/ITConsultingService";
 import DataAnalyticsService from "./pages/services/DataAnalyticsService";
@@ -38,7 +37,6 @@ const AnimatedRoutes = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/services/ai" element={<AIService />} />
         <Route path="/services/cloud" element={<CloudService />} />
-        <Route path="/services/cybersecurity" element={<CybersecurityService />} />
         <Route path="/services/software-development" element={<SoftwareDevService />} />
         <Route path="/services/it-consulting" element={<ITConsultingService />} />
         <Route path="/services/data-analytics" element={<DataAnalyticsService />} />

@@ -133,8 +133,9 @@ const CloudService = () => {
               Let's discuss your cloud strategy and create a roadmap for your digital transformation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Schedule a Consultation</Button>
-              <Button size="lg" variant="outline">View Case Studies</Button>
+              <Button size="lg" asChild>
+                <Link to="/contact">Schedule a Consultation</Link>
+              </Button>
             </div>
           </GlassCard>
         </div>
