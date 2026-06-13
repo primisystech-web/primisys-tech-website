@@ -11,9 +11,7 @@ const navLinks = [
   { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/team", label: "Team" },
-  { href: "/blog", label: "Blog" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/careers", label: "Careers" },
+
   { href: "/contact", label: "Contact" },
 ];
 
@@ -77,8 +75,8 @@ export const Navigation = () => {
 
         {/* CTA Button */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button size="sm">
-            Get Started
+          <Button size="sm" asChild>
+            <Link to="/contact">Get Started</Link>
           </Button>
         </div>
 
@@ -114,8 +112,8 @@ export const Navigation = () => {
               {link.label}
             </Link>
           ))}
-          <Button className="mt-4">
-            Get Started
+          <Button className="mt-4" asChild>
+            <Link to="/contact">Get Started</Link>
           </Button>
         </div>
       </div>

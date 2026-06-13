@@ -235,28 +235,7 @@ const Team = () => {
             </section>
           </AnimatedSection>
 
-          {/* Join Our Team CTA */}
-          <AnimatedSection delay={0.2}>
-            <section className="py-24 px-6">
-              <div className="max-w-4xl mx-auto text-center">
-                <GlassCard className="p-12">
-                  <h2 className="text-3xl font-bold mb-4">Join Our Team</h2>
-                  <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-                    We're always looking for talented individuals who are passionate about 
-                    technology and innovation. Explore our open positions and become part of our story.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" className="px-8" asChild>
-                      <Link to="/careers">View Open Positions</Link>
-                    </Button>
-                    <Button variant="outline" size="lg" asChild>
-                      <Link to="/contact">Contact Us</Link>
-                    </Button>
-                  </div>
-                </GlassCard>
-              </div>
-            </section>
-          </AnimatedSection>
+
 
           {/* Footer */}
           <Footer />

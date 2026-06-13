@@ -11,8 +11,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
+
 import AIService from "./pages/services/AIService";
 import CloudService from "./pages/services/CloudService";
 import CybersecurityService from "./pages/services/CybersecurityService";
@@ -20,8 +19,7 @@ import SoftwareDevService from "./pages/services/SoftwareDevService";
 import ITConsultingService from "./pages/services/ITConsultingService";
 import DataAnalyticsService from "./pages/services/DataAnalyticsService";
 import NotFound from "./pages/NotFound";
-import FAQ from "./pages/FAQ";
-import Careers from "./pages/Careers";
+
 import CaseStudy from "./pages/CaseStudy";
 
 const queryClient = new QueryClient();
@@ -35,8 +33,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<BlogPost />} />
+
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/services/ai" element={<AIService />} />
@@ -46,8 +43,7 @@ const AnimatedRoutes = () => {
         <Route path="/services/it-consulting" element={<ITConsultingService />} />
         <Route path="/services/data-analytics" element={<DataAnalyticsService />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/careers" element={<Careers />} />
+
         <Route path="/case-study/:slug" element={<CaseStudy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
