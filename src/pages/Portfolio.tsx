@@ -9,9 +9,6 @@ import AnimatedSection from "@/components/AnimatedSection";
 import Footer from "@/components/Footer";
 import { 
   ArrowRight, 
-  TrendingUp, 
-  Users, 
-  Clock, 
   Award,
   Building2,
   Stethoscope,
@@ -19,8 +16,7 @@ import {
   Landmark,
   Factory,
   GraduationCap,
-  ExternalLink,
-  Quote
+  ExternalLink
 } from "lucide-react";
 
 const caseStudies = [
@@ -100,25 +96,7 @@ const caseStudies = [
     technologies: ["Azure IoT", "Python", "Power BI", "Edge Computing"],
     featured: false
   },
-  {
-    id: 5,
-    slug: "cybersecurity-infrastructure",
-    title: "Cybersecurity Infrastructure Overhaul",
-    client: "SecureBank",
-    industry: "Finance",
-    icon: Landmark,
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&h=400&fit=crop",
-    description: "Comprehensive security transformation protecting $50B+ in assets with zero breaches.",
-    challenge: "Increasing cyber threats and regulatory pressure required a complete security overhaul.",
-    solution: "Implemented zero-trust architecture, 24/7 SOC, and advanced threat detection systems.",
-    results: [
-      { metric: "0", label: "Security Breaches" },
-      { metric: "100%", label: "Compliance Score" },
-      { metric: "< 5min", label: "Threat Response" }
-    ],
-    technologies: ["SIEM", "Zero Trust", "AI/ML", "SOC"],
-    featured: false
-  },
+
   {
     id: 6,
     slug: "edtech-learning-platform",
@@ -140,31 +118,10 @@ const caseStudies = [
   }
 ];
 
-const testimonials = [
-  {
-    quote: "Primisys Tech transformed our operations completely. Their AI solution has become the backbone of our diagnostic process.",
-    author: "Dr. Sarah Chen",
-    role: "Chief Medical Officer",
-    company: "MedTech Solutions"
-  },
-  {
-    quote: "The migration was seamless. We didn't lose a single minute of service, which for a bank, is absolutely critical.",
-    author: "Michael Rodriguez",
-    role: "CTO",
-    company: "Global Finance Corp"
-  },
-  {
-    quote: "Our conversion rates speak for themselves. Primisys Tech didn't just build a platform, they built a revenue engine.",
-    author: "Emma Thompson",
-    role: "VP of Digital",
-    company: "RetailMax"
-  }
-];
-
 const industries = [
-  { name: "All", count: 6 },
+  { name: "All", count: 5 },
   { name: "Healthcare", count: 1 },
-  { name: "Finance", count: 2 },
+  { name: "Finance", count: 1 },
   { name: "Retail", count: 1 },
   { name: "Manufacturing", count: 1 },
   { name: "Education", count: 1 }
@@ -176,7 +133,7 @@ const Portfolio = () => {
       <div className="min-h-screen bg-background">
         <Helmet>
           <title>Portfolio - Primisys Tech</title>
-          <meta name="description" content="Explore our portfolio of successful projects and case studies across various industries." />
+          <meta name="description" content="Explore our portfolio of projects and the results we've delivered for our clients." />
         </Helmet>
         
         <Navigation />
@@ -219,20 +176,20 @@ const Portfolio = () => {
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-2">200+</div>
+                  <div className="text-4xl font-bold text-primary mb-2">20+</div>
                   <div className="text-muted-foreground">Projects Delivered</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-2">50+</div>
-                  <div className="text-muted-foreground">Enterprise Clients</div>
+                  <div className="text-4xl font-bold text-primary mb-2">10+</div>
+                  <div className="text-muted-foreground">Clients Served</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-2">98%</div>
-                  <div className="text-muted-foreground">Client Satisfaction</div>
+                  <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                  <div className="text-muted-foreground">Industries Covered</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-bold text-primary mb-2">$100M+</div>
-                  <div className="text-muted-foreground">Client Savings</div>
+                  <div className="text-4xl font-bold text-primary mb-2">100%</div>
+                  <div className="text-muted-foreground">Client Commitment</div>
                 </div>
               </div>
             </div>
@@ -377,40 +334,7 @@ const Portfolio = () => {
           </section>
         </AnimatedSection>
 
-        {/* Client Testimonials */}
-        <AnimatedSection delay={0.3}>
-          <section className="py-20 px-4">
-            <div className="container mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
-                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                  Hear directly from the leaders who trusted us with their digital transformation
-                </p>
-              </div>
-              
-              <div className="grid md:grid-cols-3 gap-8">
-                {testimonials.map((testimonial, index) => (
-                  <GlassCard key={index} className="p-8 relative">
-                    <Quote className="absolute top-6 right-6 w-12 h-12 text-primary/10" />
-                    <p className="text-lg mb-6 relative z-10 italic text-muted-foreground">
-                      "{testimonial.quote}"
-                    </p>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <Users className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <div className="font-semibold">{testimonial.author}</div>
-                        <div className="text-sm text-muted-foreground">{testimonial.role}</div>
-                        <div className="text-xs text-primary">{testimonial.company}</div>
-                      </div>
-                    </div>
-                  </GlassCard>
-                ))}
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
+
 
         {/* CTA Section */}
         <AnimatedSection delay={0.4}>

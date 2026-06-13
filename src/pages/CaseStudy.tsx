@@ -40,8 +40,8 @@ const caseStudiesData = [
     icon: Stethoscope,
     heroImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&h=600&fit=crop",
     duration: "8 months",
-    teamSize: "12 specialists",
-    year: "2023",
+    teamSize: "4 specialists",
+    year: "2025",
     overview: "MedTech Solutions needed a revolutionary diagnostic platform that could analyze medical imaging with unprecedented accuracy. Our team developed an AI-driven solution that processes thousands of images daily while maintaining 98% diagnostic accuracy.",
     challenge: {
       title: "The Challenge",
@@ -83,7 +83,7 @@ const caseStudiesData = [
       role: "Chief Medical Officer",
       company: "MedTech Solutions"
     },
-    relatedProjects: ["2", "5"]
+    relatedProjects: ["2", "3"]
   },
   {
     id: "2",
@@ -94,8 +94,8 @@ const caseStudiesData = [
     icon: Landmark,
     heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop",
     duration: "14 months",
-    teamSize: "18 specialists",
-    year: "2023",
+    teamSize: "5 specialists",
+    year: "2025",
     overview: "Global Finance Corp required a complete migration of their legacy banking infrastructure to a secure, scalable cloud environment. The critical requirement: zero downtime during the transition.",
     challenge: {
       title: "The Challenge",
@@ -137,7 +137,7 @@ const caseStudiesData = [
       role: "CTO",
       company: "Global Finance Corp"
     },
-    relatedProjects: ["5", "1"]
+    relatedProjects: ["1", "3"]
   },
   {
     id: "3",
@@ -148,8 +148,8 @@ const caseStudiesData = [
     icon: ShoppingCart,
     heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=600&fit=crop",
     duration: "6 months",
-    teamSize: "10 specialists",
-    year: "2024",
+    teamSize: "4 specialists",
+    year: "2025",
     overview: "RetailMax's outdated e-commerce platform was causing significant cart abandonment and poor mobile experience. We delivered a complete platform overhaul that resulted in a 150% increase in conversions.",
     challenge: {
       title: "The Challenge",
@@ -202,8 +202,8 @@ const caseStudiesData = [
     icon: Factory,
     heroImage: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&h=600&fit=crop",
     duration: "10 months",
-    teamSize: "15 specialists",
-    year: "2023",
+    teamSize: "5 specialists",
+    year: "2025",
     overview: "IndustrialTech needed to modernize their manufacturing operations across 12 facilities. We implemented a comprehensive IoT sensor network with predictive maintenance capabilities.",
     challenge: {
       title: "The Challenge",
@@ -245,62 +245,9 @@ const caseStudiesData = [
       role: "VP of Operations",
       company: "IndustrialTech"
     },
-    relatedProjects: ["1", "2"]
+    relatedProjects: ["1", "3"]
   },
-  {
-    id: "5",
-    slug: "cybersecurity-infrastructure",
-    title: "Cybersecurity Infrastructure Overhaul",
-    client: "SecureBank",
-    industry: "Finance",
-    icon: Landmark,
-    heroImage: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&h=600&fit=crop",
-    duration: "12 months",
-    teamSize: "20 specialists",
-    year: "2024",
-    overview: "SecureBank required a comprehensive security transformation to protect $50B+ in assets. We implemented a zero-trust architecture with 24/7 security operations.",
-    challenge: {
-      title: "The Challenge",
-      description: "Increasing cyber threats required a complete security overhaul:",
-      points: [
-        "Legacy security infrastructure unable to detect modern threats",
-        "Regulatory pressure to demonstrate enhanced security posture",
-        "Average threat detection time of 180 days",
-        "No centralized security monitoring capabilities"
-      ]
-    },
-    solution: {
-      title: "Our Solution",
-      description: "We implemented a comprehensive zero-trust security architecture:",
-      points: [
-        "Zero-trust network architecture with micro-segmentation",
-        "24/7 Security Operations Center with AI-powered monitoring",
-        "Advanced threat detection with behavioral analytics",
-        "Automated incident response and remediation",
-        "Continuous security training and phishing simulations"
-      ]
-    },
-    results: [
-      { metric: "0", label: "Security Breaches", description: "Zero successful attacks since implementation" },
-      { metric: "100%", label: "Compliance Score", description: "Full regulatory compliance achieved" },
-      { metric: "< 5min", label: "Threat Response", description: "Average incident detection and response time" },
-      { metric: "99.9%", label: "Threat Detection", description: "Accuracy in identifying malicious activity" }
-    ],
-    technologies: ["SIEM", "Zero Trust Architecture", "AI/ML", "SOC", "CrowdStrike", "Palo Alto", "Splunk"],
-    gallery: [
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=500&fit=crop",
-      "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=500&fit=crop"
-    ],
-    testimonial: {
-      quote: "Primisys Tech's security transformation has given us and our customers complete confidence. We've gone from being reactive to being proactively secure. The investment has paid for itself many times over.",
-      author: "David Park",
-      role: "CISO",
-      company: "SecureBank"
-    },
-    relatedProjects: ["2", "1"]
-  },
+
   {
     id: "6",
     slug: "edtech-learning-platform",
@@ -310,8 +257,8 @@ const caseStudiesData = [
     icon: GraduationCap,
     heroImage: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=1200&h=600&fit=crop",
     duration: "9 months",
-    teamSize: "14 specialists",
-    year: "2024",
+    teamSize: "4 specialists",
+    year: "2026",
     overview: "EduGlobal needed a scalable learning management system to serve 2M+ students worldwide. We built an adaptive learning platform with offline capabilities and AI-driven personalization.",
     challenge: {
       title: "The Challenge",
