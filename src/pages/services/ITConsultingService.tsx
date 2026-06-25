@@ -133,8 +133,9 @@ const ITConsultingService = () => {
               Let's discuss your technology challenges and create a strategic roadmap for success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Book a Strategy Session</Button>
-              <Button size="lg" variant="outline">View Case Studies</Button>
+              <Button size="lg" asChild>
+                <Link to="/contact">Book a Strategy Session</Link>
+              </Button>
             </div>
           </GlassCard>
         </div>

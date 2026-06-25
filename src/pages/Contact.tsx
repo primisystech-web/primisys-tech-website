@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import emailjs from "@emailjs/browser";
 import { Navigation } from "@/components/Navigation";
 import { GlassCard } from "@/components/GlassCard";
 import PageTransition from "@/components/PageTransition";
@@ -13,12 +14,9 @@ import { useToast } from "@/hooks/use-toast";
 import { 
   MapPin, 
   Phone, 
-  Mail, 
-  Clock, 
-  Send,
-  Linkedin,
-  Twitter,
-  Facebook
+  Mail,
+  Clock,
+  Send
 } from "lucide-react";
 
 const contactInfo = [
@@ -40,15 +38,11 @@ const contactInfo = [
   {
     icon: Clock,
     title: "Business Hours",
-    details: ["Mon - Fri: 9:00 AM - 6:00 PM", "Sat - Sun: Closed"],
+    details: ["24/7 Support", "Full time available"],
   },
 ];
 
-const socialLinks = [
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-];
+
 
 const Contact = () => {
   const { toast } = useToast();
@@ -68,16 +62,36 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
 
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""
+      );
 
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "An error occurred while sending the message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -216,45 +230,14 @@ const Contact = () => {
                     ))}
                   </div>
 
-                  {/* Social Links */}
-                  <div className="pt-6">
-                    <h3 className="font-medium text-foreground mb-4">Follow Us</h3>
-                    <div className="flex gap-3">
-                      {socialLinks.map((social, index) => (
-                        <a
-                          key={index}
-                          href={social.href}
-                          aria-label={social.label}
-                          className="p-3 bg-card border border-border rounded-lg text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors duration-200"
-                        >
-                          <social.icon className="w-5 h-5" />
-                        </a>
-                      ))}
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* CTA Section */}
-        <AnimatedSection delay={0.1}>
-          <section className="py-16 bg-card/50">
-            <div className="container mx-auto px-4 text-center">
-              <h2 className="text-2xl md:text-3xl font-semibold text-foreground mb-4">
-                Ready to Start Your Project?
-              </h2>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Schedule a free consultation with our experts to discuss your 
-                technology needs and explore how we can help.
-              </p>
-              <Button size="lg">
-                Schedule a Call
-              </Button>
-            </div>
-          </section>
-        </AnimatedSection>
+
 
         {/* Footer */}
         <Footer />

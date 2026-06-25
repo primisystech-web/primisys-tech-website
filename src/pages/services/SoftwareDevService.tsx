@@ -133,8 +133,9 @@ const SoftwareDevService = () => {
               Let's discuss your requirements and build something amazing together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Start Your Project</Button>
-              <Button size="lg" variant="outline">View Portfolio</Button>
+              <Button size="lg" asChild>
+                <Link to="/contact">Start Your Project</Link>
+              </Button>
             </div>
           </GlassCard>
         </div>

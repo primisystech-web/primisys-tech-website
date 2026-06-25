@@ -133,8 +133,9 @@ const DataAnalyticsService = () => {
               Let's discuss how analytics can drive better decisions and business outcomes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">Schedule a Demo</Button>
-              <Button size="lg" variant="outline">View Case Studies</Button>
+              <Button size="lg" asChild>
+                <Link to="/contact">Schedule a Demo</Link>
+              </Button>
             </div>
           </GlassCard>
         </div>

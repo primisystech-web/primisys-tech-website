@@ -41,12 +41,10 @@ const values = [
 ];
 
 const milestones = [
-  { year: "2015", event: "Founded with a vision to transform businesses through technology" },
-  { year: "2017", event: "Expanded services to include cloud solutions and AI integration" },
-  { year: "2019", event: "Reached 100+ successful project deliveries" },
-  { year: "2021", event: "Launched dedicated cybersecurity division" },
-  { year: "2023", event: "Expanded operations to serve clients across 3 continents" },
-  { year: "2024", event: "Celebrating 500+ clients and growing" },
+  { year: "2025", event: "Founded with a vision to democratize enterprise technology" },
+  { year: "2025", event: "Launched our core services in AI, Cloud, and Software Development" },
+  { year: "2025", event: "Started collaborating with our first clients to bring their ideas to life" },
+  { year: "2026", event: "Delivering successful initial projects to our clients" },
 ];
 
 const About = () => {
@@ -91,14 +89,13 @@ const About = () => {
                       in an increasingly digital world.
                     </p>
                     <p>
-                      What began as a small team of passionate technologists has grown into a 
-                      trusted partner for organizations seeking to harness the power of modern 
-                      technology solutions. Our journey has been defined by continuous learning, 
-                      adaptation, and an unwavering commitment to our clients' success.
+                      As a newly launched, energetic startup, we are a close-knit team of passionate technologists 
+                      eager to prove ourselves. We believe that agility, fresh perspectives, and an unwavering 
+                      commitment to our clients' success are our greatest strengths.
                     </p>
                     <p>
-                      Today, we combine deep technical expertise with strategic insight to deliver 
-                      solutions that not only meet immediate needs but also position our clients 
+                      Our goal today is to combine our deep technical expertise with strategic insight to deliver 
+                      solutions that not only meet immediate needs but also position our early partners 
                       for long-term success in an ever-evolving technological landscape.
                     </p>
                   </div>
