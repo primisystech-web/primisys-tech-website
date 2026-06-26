@@ -11,11 +11,17 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  console.log(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+  console.log(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+  console.log(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
   return (
     <PageTransition>
       <Helmet>
         <title>Primisys Tech | Innovative Technology Solutions</title>
-        <meta name="description" content="Primisys Tech - Leading provider of Software Development, AI & Data Solutions, and IT Consulting services. Building tomorrow's technology today." />
+        <meta
+          name="description"
+          content="Primisys Tech - Leading provider of Software Development, AI & Data Solutions, and IT Consulting services. Building tomorrow's technology today."
+        />
       </Helmet>
       <div className="min-h-screen bg-background overflow-x-hidden">
         {/* Navigation */}
@@ -29,16 +35,34 @@ const Index = () => {
           <section className="py-20 border-t border-border">
             <div className="container mx-auto px-4">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <StatCounter end={20} suffix="+" label="Projects Delivered" delay={0} />
-                <StatCounter end={10} suffix="+" label="Happy Clients" delay={100} />
-                <StatCounter end={5} suffix="+" label="Years Experience" delay={200} />
-                <StatCounter end={99} suffix="%" label="Client Satisfaction" delay={300} />
+                <StatCounter
+                  end={20}
+                  suffix="+"
+                  label="Projects Delivered"
+                  delay={0}
+                />
+                <StatCounter
+                  end={10}
+                  suffix="+"
+                  label="Happy Clients"
+                  delay={100}
+                />
+                <StatCounter
+                  end={5}
+                  suffix="+"
+                  label="Years Experience"
+                  delay={200}
+                />
+                <StatCounter
+                  end={99}
+                  suffix="%"
+                  label="Client Satisfaction"
+                  delay={300}
+                />
               </div>
             </div>
           </section>
         </AnimatedSection>
-
-
 
         {/* CTA Section */}
         <AnimatedSection delay={0.2}>
