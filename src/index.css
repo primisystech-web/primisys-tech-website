@@ -93,6 +93,15 @@
 @layer base {
   * {
     @apply border-border;
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none !important;
+    /* Hide scrollbar for IE/Edge */
+    -ms-overflow-style: none !important;
+  }
+
+  /* Hide scrollbar for Chrome, Safari, Edge, Opera */
+  *::-webkit-scrollbar {
+    display: none !important;
   }
 
   html {

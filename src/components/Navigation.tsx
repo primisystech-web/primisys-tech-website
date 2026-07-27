@@ -45,13 +45,17 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <img
-            src={logo}
-            alt="Primisys Tech"
-            className="h-9 w-9 rounded-md object-cover"
-          />
-          <span className="text-lg font-semibold text-foreground">
-            Primisys<span className="text-primary">Tech</span>
+          <div className="relative flex items-center justify-center">
+            {/* Animated background glow halo */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 opacity-40 blur-md group-hover:opacity-80 group-hover:scale-110 transition-all duration-500 animate-pulse" />
+            <img
+              src={logo}
+              alt="Primisys Tech"
+              className="relative h-10 w-10 object-contain transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+            />
+          </div>
+          <span className="text-lg font-semibold text-foreground tracking-tight">
+            Primisys<span className="text-primary group-hover:text-cyan-400 transition-colors duration-300">Tech</span>
           </span>
         </Link>
 

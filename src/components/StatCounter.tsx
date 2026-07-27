@@ -51,7 +51,7 @@ export const StatCounter = ({
   }, [end, duration, started]);
 
   return (
-    <div className={cn("text-center opacity-0", started && "animate-fade-in")}>
+    <div className="text-center">
       <div className="text-4xl md:text-5xl font-bold mb-2 text-foreground">
         <span className="text-primary">{prefix}{count}{suffix}</span>
       </div>
