@@ -5,9 +5,15 @@ import {
   MapPin,
   Linkedin,
   Instagram,
-  Facebook
+  Facebook,
+  ArrowRight,
+  Shield,
+  Award,
+  CheckCircle2
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,37 +40,19 @@ const Footer = () => {
     { icon: Instagram, href: "https://www.instagram.com/primisystech/?utm_source=ig_web_button_share_sheet", label: "Instagram" },
   ];
 
-  return (
-    // Perspective Container to enable realistic 3D space depth
-    <div className="overflow-hidden py-12 [perspective:1200px]">
-      <motion.footer
-        // Initial 3D state: Chota (scale: 0.2), X-axis per 45 degree tilt, depth offset
-        initial={{
-          opacity: 0,
-          scale: 0.2,
-          rotateX: 45,
-          z: -500,
-          y: 200
-        }}
-        // Final 3D state: Smoothly 3D zoom-in ho kar standard size par flat ho jayega
-        whileInView={{
-          opacity: 1,
-          scale: 1,
-          rotateX: 0,
-          z: 0,
-          y: 0
-        }}
-        transition={{
-          duration: 1.1,
-          ease: [0.16, 1, 0.3, 1], // Smooth cubic-bezier 3D ease
-        }}
-        viewport={{ once: false, amount: 0.2 }}
-        className="bg-card border border-border/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative z-10 origin-bottom rounded-3xl mx-4 md:mx-12 transform-gpu"
-      >
-        {/* Main Footer Content */}
-        <div className="container mx-auto px-6 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+  const certifications = [
+    { icon: Shield, label: "ISO 27001 Certified" },
+    { icon: Award, label: "AWS Partner" },
+    { icon: CheckCircle2, label: "SOC 2 Compliant" },
+  ];
 
+  return (
+    <AnimatedSection>
+      <footer className="bg-card border-t border-border">
+
+        {/* Main Footer Content */}
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {/* Company Info */}
             <div className="lg:col-span-2">
               <Link to="/" className="inline-block mb-6">
@@ -142,10 +130,12 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Links */}
+        {/* Trust Badges & Certifications */}
         <div className="border-t border-border">
-          <div className="container mx-auto px-6 py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col md:flex-row items-end justify-between gap-6">
+
+              {/* Social Links */}
               <div className="flex items-center gap-4">
                 {socialLinks.map((social) => (
                   <a
@@ -165,15 +155,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border bg-background/50 rounded-b-3xl">
-          <div className="container mx-auto px-6 py-6">
+        <div className="border-t border-border bg-background/50">
+          <div className="container mx-auto px-4 py-6">
             <div className="flex flex-col items-center justify-center text-sm text-muted-foreground text-center">
               <p>© {currentYear} Primisys Tech. All rights reserved.</p>
             </div>
           </div>
         </div>
-      </motion.footer>
-    </div>
+      </footer>
+    </AnimatedSection>
   );
 };
 

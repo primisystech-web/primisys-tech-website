@@ -9,6 +9,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import logo from "@/assets/logo-transparent.png";
 
 const Index = () => {
   return (
@@ -104,6 +105,167 @@ const Index = () => {
             </AnimatedSection>
           </motion.div>
         </section>
+
+        {/* Scroll-Revealed Navigation Sections */}
+        {[
+          {
+            title: "About Us",
+            subtitle: "Our Story & Vision",
+            description: "Discover our journey, mission, and the core values that drive our team to deliver absolute excellence.",
+            buttonText: "Discover Our Story",
+            href: "/about",
+            gradient: "from-blue-500/10 via-indigo-500/5 to-transparent",
+            glow: "group-hover:shadow-[0_0_50px_20px_rgba(59,130,246,0.15)]",
+            border: "hover:border-blue-500/30",
+            btnGlow: "bg-blue-500",
+          },
+          {
+            title: "Our Services",
+            subtitle: "Expertise & Innovation",
+            description: "Explore our expertise across AI/ML solutions, cloud infrastructure, custom software, and strategic IT consulting.",
+            buttonText: "Explore What We Do",
+            href: "/services",
+            gradient: "from-cyan-500/10 via-blue-500/5 to-transparent",
+            glow: "group-hover:shadow-[0_0_50px_20px_rgba(6,182,212,0.15)]",
+            border: "hover:border-cyan-500/30",
+            btnGlow: "bg-cyan-500",
+          },
+          {
+            title: "Our Portfolio",
+            subtitle: "Case Studies & Work",
+            description: "Take a look at our successful deployments and see how we help modern businesses transform and scale.",
+            buttonText: "View Our Work",
+            href: "/portfolio",
+            gradient: "from-purple-500/10 via-pink-500/5 to-transparent",
+            glow: "group-hover:shadow-[0_0_50px_20px_rgba(168,85,247,0.15)]",
+            border: "hover:border-purple-500/30",
+            btnGlow: "bg-purple-500",
+          },
+          {
+            title: "Meet the Team",
+            subtitle: "Experts & Innovators",
+            description: "Get to know the passionate engineers, creative visionaries, and project coordinators behind Primisys Tech.",
+            buttonText: "Meet the Team",
+            href: "/team",
+            gradient: "from-violet-500/10 via-indigo-500/5 to-transparent",
+            glow: "group-hover:shadow-[0_0_50px_20px_rgba(139,92,246,0.15)]",
+            border: "hover:border-violet-500/30",
+            btnGlow: "bg-violet-500",
+          },
+          {
+            title: "Get in Touch",
+            subtitle: "Start Your Project",
+            description: "Ready to kickstart your next digital upgrade? Reach out to us and let's craft a solution tailored to your goals.",
+            buttonText: "Contact Us Now",
+            href: "/contact",
+            gradient: "from-emerald-500/10 via-teal-500/5 to-transparent",
+            glow: "group-hover:shadow-[0_0_50px_20px_rgba(16,185,129,0.15)]",
+            border: "hover:border-emerald-500/30",
+            btnGlow: "bg-emerald-500",
+          },
+        ].map((section, idx) => {
+          const isLeft = idx % 2 === 0;
+          return (
+            <section
+              key={idx}
+              className="py-32 border-t border-border/40 overflow-hidden relative flex flex-col items-center justify-center min-h-[60vh] [perspective:1200px]"
+            >
+              {/* Ambient Background Gradient for each section */}
+              <div className={`absolute inset-0 bg-gradient-to-b ${section.gradient} opacity-40 pointer-events-none`} />
+
+              <div className="container mx-auto px-6 max-w-5xl z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                {/* Logo Column */}
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 250,
+                    scale: 0.2,
+                    rotate: isLeft ? -45 : 45
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1.1,
+                    rotate: 0
+                  }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{
+                    duration: 1.1,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  className={`md:col-span-4 flex justify-center ${isLeft ? "md:order-1" : "md:order-2"}`}
+                >
+                  <div className="relative group/logo">
+                    <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-primary to-cyan-500 opacity-25 blur-2xl group-hover/logo:opacity-50 transition-opacity duration-500" />
+                    <img
+                      src={logo}
+                      alt="Primisys Tech Logo"
+                      className="w-32 h-32 md:w-40 md:h-40 rounded-3xl border border-border/50 shadow-2xl object-cover transform transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+                </motion.div>
+
+                {/* Text Content Column */}
+                <div className={`md:col-span-8 text-center md:text-left ${isLeft ? "md:order-2" : "md:order-1"}`}>
+                  {/* Title & Description Zooming from behind */}
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      scale: 0.1,
+                      z: -800,
+                      rotateX: 15
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      scale: 1,
+                      z: 0,
+                      rotateX: 0
+                    }}
+                    viewport={{ once: false, amount: 0.3 }}
+                    transition={{
+                      duration: 0.9,
+                      ease: [0.16, 1, 0.3, 1]
+                    }}
+                    className="transform-gpu"
+                  >
+                    <span className="text-sm font-semibold text-primary tracking-widest uppercase mb-3 block">
+                      {section.subtitle}
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">
+                      {section.title}
+                    </h2>
+                    <p className="text-muted-foreground text-lg mb-10 max-w-xl leading-relaxed">
+                      {section.description}
+                    </p>
+                  </motion.div>
+
+                  {/* Button: Only visible when fully centered, disappears when scrolling */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.4 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: false, amount: 0.95 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="relative inline-block group"
+                  >
+                    {/* Glow ring behind button */}
+                    <div className={`absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition duration-500 ${section.btnGlow} ${section.glow}`} />
+                    <Button
+                      size="xl"
+                      variant="outline"
+                      className={`relative bg-background border-border transition-all duration-300 ${section.border} hover:text-foreground`}
+                      asChild
+                    >
+                      <Link to={section.href}>
+                        {section.buttonText}
+                        <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
+            </section>
+          );
+        })}
 
         {/* Footer */}
         <Footer />
