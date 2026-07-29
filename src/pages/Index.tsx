@@ -9,7 +9,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import logo from "@/assets/logo-transparent.png";
+import FloatingLogo from "@/components/FloatingLogo";
 
 const Index = () => {
   return (
@@ -22,6 +22,9 @@ const Index = () => {
         />
       </Helmet>
       <div className="min-h-screen bg-background overflow-x-hidden">
+        {/* Persistent floating 3-D logo – always visible, scrolls left/right */}
+        <FloatingLogo />
+
         {/* Navigation */}
         <Navigation />
 
@@ -173,40 +176,15 @@ const Index = () => {
               {/* Ambient Background Gradient for each section */}
               <div className={`absolute inset-0 bg-gradient-to-b ${section.gradient} opacity-40 pointer-events-none`} />
 
-              <div className="container mx-auto px-6 max-w-5xl z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-                {/* Logo Column */}
-                <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: 250,
-                    scale: 0.2,
-                    rotate: isLeft ? -45 : 45
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    scale: 1.1,
-                    rotate: 0
-                  }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{
-                    duration: 1.1,
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  className={`md:col-span-4 flex justify-center ${isLeft ? "md:order-1" : "md:order-2"}`}
+              <div className="container mx-auto px-6 max-w-5xl z-10">
+                {/* Text block positioned opposite the floating logo */}
+                <div
+                  className={`max-w-xl ${
+                    isLeft
+                      ? "ml-auto mr-0 md:mr-16 text-left"
+                      : "mr-auto ml-0 md:ml-16 text-left"
+                  }`}
                 >
-                  <div className="relative group/logo">
-                    <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-primary to-cyan-500 opacity-25 blur-2xl group-hover/logo:opacity-50 transition-opacity duration-500" />
-                    <img
-                      src={logo}
-                      alt="Primisys Tech Logo"
-                      className="w-32 h-32 md:w-40 md:h-40 rounded-3xl border border-border/50 shadow-2xl object-cover transform transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
-                </motion.div>
-
-                {/* Text Content Column */}
-                <div className={`md:col-span-8 text-center md:text-left ${isLeft ? "md:order-2" : "md:order-1"}`}>
                   {/* Title & Description Zooming from behind */}
                   <motion.div
                     initial={{
@@ -234,7 +212,7 @@ const Index = () => {
                     <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight">
                       {section.title}
                     </h2>
-                    <p className="text-muted-foreground text-lg mb-10 max-w-xl leading-relaxed">
+                    <p className="text-muted-foreground text-lg mb-10 leading-relaxed">
                       {section.description}
                     </p>
                   </motion.div>

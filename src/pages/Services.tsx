@@ -7,13 +7,13 @@ import AnimatedSection from "@/components/AnimatedSection";
 import MethodologyWorkflow from "@/components/MethodologyWorkflow";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { 
-  Brain, 
-  Cloud, 
-  Code, 
-  Users, 
+import {
+  Brain,
+  Cloud,
+  Code,
+  Users,
   BarChart3,
-  ArrowRight 
+  ArrowRight
 } from "lucide-react";
 
 const services = [
@@ -59,7 +59,7 @@ const Services = () => {
       </Helmet>
       <div className="min-h-screen bg-background">
         <Navigation />
-        
+
         {/* Hero Section */}
         <section className="pt-32 pb-16 px-4">
           <div className="max-w-6xl mx-auto text-center">
@@ -72,7 +72,7 @@ const Services = () => {
               <span className="text-primary">Modern Business</span>
             </h1>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              From AI-powered automation to custom software development, we deliver comprehensive 
+              From AI-powered automation to custom software development, we deliver comprehensive
               technology services that drive innovation and growth.
             </p>
           </div>
@@ -85,7 +85,7 @@ const Services = () => {
               <div className="flex flex-wrap justify-center gap-6">
                 {services.map((service) => (
                   <Link key={service.title} to={service.href} className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex">
-                    <GlassCard 
+                    <GlassCard
                       className="p-8 w-full group cursor-pointer flex flex-col"
                     >
                       <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/15 transition-colors">
