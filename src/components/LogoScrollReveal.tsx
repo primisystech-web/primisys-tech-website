@@ -35,19 +35,19 @@ const LogoScrollReveal = ({ width = 280 }: LogoScrollRevealProps) => {
         anticipatePin: 1,
       };
 
-      // ── DESKTOP (Text on LEFT, starts very small, zooms in on scroll) ──
+      // ── DESKTOP & MOBILE: Text starts VERY SMALL and zooms into CENTER on scroll ──
       gsap.matchMedia().add("(min-width: 768px)", () => {
         gsap.set(textContent, {
           opacity: 0.15,
           scale: 0.18,
           filter: "blur(10px)",
-          transformOrigin: "left center",
+          transformOrigin: "center center",
         });
         gsap.set(glow, { opacity: 0.05, scale: 0.2 });
 
         const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
 
-        // Phase 1: Text zooms in from very small on scroll (synced with logo on right)
+        // Phase 1: Text zooms in from very small into CENTER
         tl.to(
           textContent,
           {
@@ -91,7 +91,7 @@ const LogoScrollReveal = ({ width = 280 }: LogoScrollRevealProps) => {
           opacity: 0.15,
           scale: 0.2,
           filter: "blur(8px)",
-          transformOrigin: "center",
+          transformOrigin: "center center",
         });
         gsap.set(glow, { opacity: 0.05, scale: 0.2 });
 
@@ -127,35 +127,35 @@ const LogoScrollReveal = ({ width = 280 }: LogoScrollRevealProps) => {
   return (
     <div
       ref={sectionRef}
-      className="logo-scroll-section relative w-full h-screen bg-background overflow-hidden flex items-center px-6 md:px-16"
+      className="logo-scroll-section relative w-full h-screen bg-background overflow-hidden flex items-center justify-center px-6 md:px-16"
     >
       {/* Background Radial Glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 55% at 30% 50%, hsl(var(--primary)/0.09) 0%, transparent 68%)",
+            "radial-gradient(ellipse 60% 55% at 50% 50%, hsl(var(--primary)/0.09) 0%, transparent 68%)",
         }}
       />
 
-      {/* ── LEFT COLUMN: Hero Text (Right side is open for single 3D FloatingLogo) ── */}
+      {/* ── CENTERED HERO TEXT: Starts very small, zooms into center on scroll ── */}
       <div
         ref={textContentRef}
-        className="relative z-10 w-full max-w-xl space-y-6 text-left pointer-events-auto"
+        className="relative z-10 w-full max-w-3xl space-y-6 text-center mx-auto pointer-events-auto"
       >
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground block">
           Building Tomorrow's
           <br />
           <span className="text-primary">Technology Today</span>
         </h1>
 
-        <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed block">
           We transform businesses through intelligent software solutions,
           leveraging AI, data analytics, and modern development practices to
           drive innovation and growth.
         </p>
 
-        <div className="cta-buttons flex flex-col sm:flex-row items-start gap-4 pt-2">
+        <div className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
           <Button size="xl" className="group w-full sm:w-auto" asChild>
             <Link to="/contact">
               Start Your Project
@@ -172,7 +172,7 @@ const LogoScrollReveal = ({ width = 280 }: LogoScrollRevealProps) => {
           </Button>
         </div>
 
-        <div className="service-tags flex flex-wrap items-center gap-3 pt-4">
+        <div className="service-tags flex flex-wrap items-center justify-center gap-3 pt-4">
           {["Software Development", "AI & Data Solutions", "IT Consulting"].map(
             (service) => (
               <span
@@ -189,50 +189,15 @@ const LogoScrollReveal = ({ width = 280 }: LogoScrollRevealProps) => {
       {/* Ambient Glow */}
       <div
         ref={glowRef}
-        className="absolute left-1/4 top-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0"
         style={{
-          width: `${width * 1.4}px`,
-          height: `${width * 1.4}px`,
+          width: `${width * 1.5}px`,
+          height: `${width * 1.5}px`,
           background:
             "radial-gradient(circle, hsl(var(--primary)/0.30) 0%, hsl(217 91% 60%/0.12) 50%, transparent 72%)",
           filter: "blur(40px)",
         }}
       />
-
-      {/* Scroll Down Indicator */}
-      <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none z-10"
-        style={{ opacity: 0.55 }}
-      >
-        <span className="text-[10px] text-muted-foreground tracking-widest uppercase font-semibold">
-          Scroll Down
-        </span>
-        <svg
-          width="16"
-          height="24"
-          viewBox="0 0 16 26"
-          fill="none"
-          className="text-primary"
-        >
-          <rect
-            x="1"
-            y="1"
-            width="14"
-            height="24"
-            rx="7"
-            stroke="currentColor"
-            strokeWidth="1.5"
-          />
-          <circle cx="8" cy="8" r="2.2" fill="currentColor">
-            <animate
-              attributeName="cy"
-              values="8;15;8"
-              dur="1.8s"
-              repeatCount="indefinite"
-            />
-          </circle>
-        </svg>
-      </div>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const Index = () => {
 
         {/* Stats Section with Slide-In from Right & 3D Tilt */}
         <section className="py-20 border-t border-border overflow-hidden">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-8 md:px-20 max-w-6xl">
             <motion.div
               initial={{ opacity: 0, x: 150, rotateY: -15 }}
               whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
@@ -177,14 +177,8 @@ const Index = () => {
               <div className={`absolute inset-0 bg-gradient-to-b ${section.gradient} opacity-40 pointer-events-none`} />
 
               <div className="container mx-auto px-6 max-w-5xl z-10">
-                {/* Text block positioned opposite the floating logo */}
-                <div
-                  className={`max-w-xl ${
-                    isLeft
-                      ? "ml-auto mr-0 md:mr-16 text-left"
-                      : "mr-auto ml-0 md:ml-16 text-left"
-                  }`}
-                >
+                {/* Text block centered in the middle of screen */}
+                <div className="max-w-2xl mx-auto text-center">
                   {/* Title & Description Zooming from behind */}
                   <motion.div
                     initial={{

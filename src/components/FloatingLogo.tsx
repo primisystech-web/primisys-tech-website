@@ -2,32 +2,27 @@ import { useEffect, useRef, useState } from "react";
 import LogoFrames from "@/components/LogoFrames";
 
 /**
- * FloatingLogo
+ * FloatingLogo — Choreographed with scroll:
  *
- * Single 3D floating logo across the entire project.
+ * HERO SECTION (pinned, 0 → 3×vh scroll):
+ *   • 0%–75% of hero scroll → logo grows on FAR RIGHT (+40vw)
+ *   • 75%–100% of hero scroll → text exits, logo glides to CENTER (0vw), gets big
  *
- * 1. HERO SECTION (Pinned for ~300vh):
- *    - Starts on the RIGHT side (+32vw), tiny (scale 0.18).
- *    - Text is on the LEFT side.
- *    - Logo stays strictly on the RIGHT side while hero is pinned,
- *      zooming from 0.18 -> 0.85. Never crosses onto hero text!
+ * POST-HERO SECTIONS (every 1000px):
+ *   • Entering a section window → logo slides to LEFT or RIGHT (+40vw / -40vw)
+ *   • Middle of section window (500–700px in) → logo briefly glides back to CENTER
+ *   • Next section starts → logo slides to opposite side
  *
- * 2. SUBSEQUENT SECTIONS (About, Services, Portfolio, Team, Contact):
- *    - Logo alternates sides (Left <-> Right) opposite to each section's text.
- *
- * 3. FOOTER:
- *    - Scales to 0.45 and stays on the Right side out of the way of footer links.
+ * Footer approach:
+ *   • Last ~500px before footer → logo shrinks and locks to right edge
  */
 const FloatingLogo = () => {
   const frameRef = useRef<HTMLDivElement>(null);
+  const [xVw, setXVw] = useState(40);   // starts far right
+  const [scale, setScale] = useState(0.18);
 
-  // Start on the right side (1) immediately
-  const [side, setSide] = useState<-1 | 1>(1);
-  const [scale, setScale] = useState(0.18); // starts tiny
-  const [tilt, setTilt] = useState(0);
-
-  const prevScrollY = useRef(0);
   const rafId = useRef<number | null>(null);
+  const prevSection = useRef(-1);
 
   useEffect(() => {
     const onScroll = () => {
@@ -36,60 +31,76 @@ const FloatingLogo = () => {
         const scrollY = window.scrollY;
         const vh = window.innerHeight;
         const maxScroll = document.documentElement.scrollHeight - vh;
-        const direction = scrollY > prevScrollY.current ? 1 : -1;
-        prevScrollY.current = scrollY;
 
-        // Is user at/near footer (bottom 12% of page)?
-        const isFooter = maxScroll > 0 && scrollY / maxScroll > 0.88;
-
-        // Hero section is pinned for end: "+=300%" (approx 3 * vh)
-        const heroPinEnd = vh * 2.8;
-
-        let targetSide: -1 | 1 = 1;
-        let targetScale = 0.98;
-
-        if (scrollY < heroPinEnd) {
-          // ── HERO SECTION ──
-          // Always keep logo on the RIGHT (+32vw) while hero is pinned!
-          targetSide = 1;
-          // Zoom from tiny (0.20) -> 0.98 over first 450px of scroll
-          const zoomProgress = Math.min(scrollY / 450, 1);
-          targetScale = 0.2 + zoomProgress * 0.78;
-        } else if (isFooter) {
-          // ── FOOTER ──
-          targetSide = 1;
-          targetScale = 0.52;
-        } else {
-          // ── CONTENT SECTIONS BELOW HERO ──
-          // Calculate section index for remaining sections (each approx 650px)
-          const postHeroScroll = scrollY - heroPinEnd;
-          const sectionIdx = Math.floor(postHeroScroll / 650);
-
-          targetSide = sectionIdx % 2 === 0 ? -1 : 1;
-          targetScale = 0.98;
+        // ── Near Footer ──────────────────────────────────────────────────────
+        const isNearFooter = maxScroll > 0 && maxScroll - scrollY < 500;
+        if (isNearFooter) {
+          setScale(0.44);
+          setXVw(40);
+          return;
         }
 
-        setSide(targetSide);
-        setScale(targetScale);
+        // ── HERO PINNED SECTION (0 → 3×vh) ───────────────────────────────────
+        const heroPinEnd = vh * 3;
 
-        // Subtle 3D tilt in scroll direction
-        setTilt(direction * 12);
-        setTimeout(() => setTilt(0), 350);
+        if (scrollY <= heroPinEnd) {
+          const heroProgress = scrollY / heroPinEnd; // 0 → 1
+
+          // Scale: tiny (0.18) → full (0.92) over first 30% of hero scroll
+          const zoomProgress = Math.min(scrollY / (heroPinEnd * 0.30), 1);
+          setScale(0.18 + zoomProgress * 0.74); // 0.18 → 0.92
+
+          // Text exits at 75% of hero scroll  →  logo glides to CENTER
+          const exitThreshold = 0.75;
+          if (heroProgress < exitThreshold) {
+            // Text visible: logo stays far RIGHT
+            setXVw(40);
+          } else {
+            // Text exiting: logo glides from +40vw → 0vw (center)
+            const t = (heroProgress - exitThreshold) / (1 - exitThreshold); // 0→1
+            const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOut
+            setXVw(40 * (1 - ease));
+          }
+          return;
+        }
+
+        // ── POST-HERO SECTIONS ────────────────────────────────────────────────
+        // Full scale after hero
+        setScale(0.92);
+
+        const postHero = scrollY - heroPinEnd;
+        const sectionSize = 1000;     // px per "virtual section"
+        const centerWindow = 200;     // px in middle of each section where logo centers
+
+        const sectionProgress = postHero % sectionSize;  // 0→1000 within section
+        const sectionIdx = Math.floor(postHero / sectionSize);
+
+        // Center of the section: 400–600px in (the 200px window)
+        const centerStart = (sectionSize - centerWindow) / 2;  // 400
+        const centerEnd = centerStart + centerWindow;            // 600
+
+        if (sectionProgress >= centerStart && sectionProgress <= centerEnd) {
+          // Logo glides to CENTER during transition
+          setXVw(0);
+        } else if (sectionProgress < centerStart) {
+          // First half of section: logo on one side
+          const side = sectionIdx % 2 === 0 ? -40 : 40; // after hero: start LEFT
+          setXVw(side);
+          if (sectionIdx !== prevSection.current) prevSection.current = sectionIdx;
+        } else {
+          // Second half: logo moves to opposite side (next section side)
+          const nextSide = (sectionIdx + 1) % 2 === 0 ? -40 : 40;
+          setXVw(nextSide);
+        }
       });
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    // Trigger once on mount to initialize
-    onScroll();
-
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
   }, []);
-
-  // Horizontal offset: right = +32vw, left = -32vw
-  const xVw = side === 1 ? 32 : -32;
 
   return (
     <div
@@ -100,34 +111,31 @@ const FloatingLogo = () => {
         top: "50%",
         left: "50%",
         pointerEvents: "none",
-        zIndex: 50,
+        zIndex: 40,
         transform: `
           translate(-50%, -50%)
           translateX(${xVw}vw)
-          rotateY(${side * -20}deg)
-          rotateZ(${tilt}deg)
           scale(${scale})
         `,
-        transition: "transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+        transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out",
         willChange: "transform",
         transformStyle: "preserve-3d",
         perspective: "1200px",
-        opacity: scale < 0.2 ? scale * 4 : 0.95, // smooth fade-in as it zooms
+        opacity: scale < 0.22 ? 0.4 : 0.95,
       }}
     >
-      {/* Ambient glow halo */}
+      {/* Ambient Glow Halo */}
       <div
         style={{
           position: "absolute",
-          inset: "-30px",
+          inset: "-40px",
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, hsl(217 91% 60% / 0.28) 0%, transparent 70%)",
-          filter: "blur(28px)",
+          background: "radial-gradient(circle, hsl(217 91% 60% / 0.25) 0%, transparent 70%)",
+          filter: "blur(32px)",
           pointerEvents: "none",
         }}
       />
-      <LogoFrames width={240} fps={30} />
+      <LogoFrames width={220} fps={30} />
     </div>
   );
 };
