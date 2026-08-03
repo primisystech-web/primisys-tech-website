@@ -1,25 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import LogoFrames from "@/components/LogoFrames";
 
-/**
- * FloatingLogo — Choreographed with scroll:
- *
- * HERO SECTION (pinned, 0 → 3×vh scroll):
- *   • 0%–75% of hero scroll → logo grows on FAR RIGHT (+40vw)
- *   • 75%–100% of hero scroll → text exits, logo glides to CENTER (0vw), gets big
- *
- * POST-HERO SECTIONS (every 1000px):
- *   • Entering a section window → logo slides to LEFT or RIGHT (+40vw / -40vw)
- *   • Middle of section window (500–700px in) → logo briefly glides back to CENTER
- *   • Next section starts → logo slides to opposite side
- *
- * Footer approach:
- *   • Last ~500px before footer → logo shrinks and locks to right edge
- */
 const FloatingLogo = () => {
   const frameRef = useRef<HTMLDivElement>(null);
-  const [xVw, setXVw] = useState(40);   // starts far right
-  const [scale, setScale] = useState(0.18);
+  // Initial State: Bada scale aur CENTER position
+  const [xVw, setXVw] = useState(0);
+  const [scale, setScale] = useState(0.95);
 
   const rafId = useRef<number | null>(null);
   const prevSection = useRef(-1);
@@ -36,7 +22,7 @@ const FloatingLogo = () => {
         const isNearFooter = maxScroll > 0 && maxScroll - scrollY < 500;
         if (isNearFooter) {
           setScale(0.44);
-          setXVw(40);
+          setXVw(35);
           return;
         }
 
@@ -44,52 +30,42 @@ const FloatingLogo = () => {
         const heroPinEnd = vh * 3;
 
         if (scrollY <= heroPinEnd) {
-          const heroProgress = scrollY / heroPinEnd; // 0 → 1
+          const heroProgress = scrollY / heroPinEnd;
 
-          // Scale: tiny (0.18) → full (0.92) over first 30% of hero scroll
-          const zoomProgress = Math.min(scrollY / (heroPinEnd * 0.30), 1);
-          setScale(0.18 + zoomProgress * 0.74); // 0.18 → 0.92
-
-          // Text exits at 75% of hero scroll  →  logo glides to CENTER
-          const exitThreshold = 0.75;
-          if (heroProgress < exitThreshold) {
-            // Text visible: logo stays far RIGHT
-            setXVw(40);
+          if (heroProgress === 0) {
+            // Top of page: Logo CENTER mein bada rahega
+            setXVw(0);
+            setScale(0.95);
           } else {
-            // Text exiting: logo glides from +40vw → 0vw (center)
-            const t = (heroProgress - exitThreshold) / (1 - exitThreshold); // 0→1
-            const ease = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; // easeInOut
-            setXVw(40 * (1 - ease));
+            // Scroll karne par: Logo RIGHT side par slide karega
+            const t = Math.min(heroProgress / 0.3, 1);
+            setXVw(35 * t); // Moves from center (0vw) to Right (+35vw)
+            setScale(0.95 - t * 0.2);
           }
           return;
         }
 
         // ── POST-HERO SECTIONS ────────────────────────────────────────────────
-        // Full scale after hero
-        setScale(0.92);
+        setScale(0.85);
 
         const postHero = scrollY - heroPinEnd;
-        const sectionSize = 1000;     // px per "virtual section"
-        const centerWindow = 200;     // px in middle of each section where logo centers
+        const sectionSize = 1000;
+        const centerWindow = 200;
 
-        const sectionProgress = postHero % sectionSize;  // 0→1000 within section
+        const sectionProgress = postHero % sectionSize;
         const sectionIdx = Math.floor(postHero / sectionSize);
 
-        // Center of the section: 400–600px in (the 200px window)
-        const centerStart = (sectionSize - centerWindow) / 2;  // 400
-        const centerEnd = centerStart + centerWindow;            // 600
+        const centerStart = (sectionSize - centerWindow) / 2;
+        const centerEnd = centerStart + centerWindow;
 
         if (sectionProgress >= centerStart && sectionProgress <= centerEnd) {
-          // Logo glides to CENTER during transition
           setXVw(0);
         } else if (sectionProgress < centerStart) {
-          // First half of section: logo on one side
-          const side = sectionIdx % 2 === 0 ? -40 : 40; // after hero: start LEFT
+          const side = sectionIdx % 2 === 0 ? -35 : 35;
           setXVw(side);
           if (sectionIdx !== prevSection.current) prevSection.current = sectionIdx;
         } else {
-          // Second half: logo moves to opposite side (next section side)
-          const nextSide = (sectionIdx + 1) % 2 === 0 ? -40 : 40;
+          const nextSide = (sectionIdx + 1) % 2 === 0 ? -35 : 35;
           setXVw(nextSide);
         }
       });
@@ -117,7 +93,7 @@ const FloatingLogo = () => {
           translateX(${xVw}vw)
           scale(${scale})
         `,
-        transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out",
+        transition: "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease-out",
         willChange: "transform",
         transformStyle: "preserve-3d",
         perspective: "1200px",
@@ -135,7 +111,7 @@ const FloatingLogo = () => {
           pointerEvents: "none",
         }}
       />
-      <LogoFrames width={220} fps={30} />
+      <LogoFrames width={260} fps={30} />
     </div>
   );
 };
