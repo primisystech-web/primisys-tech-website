@@ -9,7 +9,6 @@ export const HeroSection = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[700px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
         <LogoScrollReveal
-          width={260}
           title={
             <>
               Building Tomorrow's <br />
@@ -22,6 +21,7 @@ export const HeroSection = () => {
           secondaryButtonText="Explore Our Work"
           secondaryHref="/portfolio"
           serviceTags={["Software Development", "AI & Data Solutions", "IT Consulting"]}
+          alignLeft={false}
         />
       </div>
     </>

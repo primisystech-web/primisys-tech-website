@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 interface LogoScrollRevealProps {
-  width?: number;
   subtitle?: string;
   title?: ReactNode;
   description?: string;
@@ -35,6 +34,7 @@ const LogoScrollReveal = ({
   btnGlow = "bg-primary",
   border = "border-border",
   hideLogo = false,
+  alignLeft = false,
 }: LogoScrollRevealProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
@@ -42,107 +42,113 @@ const LogoScrollReveal = ({
   useEffect(() => {
     const section = sectionRef.current;
     const textContent = textContentRef.current;
-    const globalFloatingLogo = document.getElementById("main-floating-logo");
+    const globalLogo = document.getElementById("main-floating-logo");
 
-    if (!section || !textContent) return;
+    if (!section || !textContent || !globalLogo) return;
+
+    const textStartSide = alignLeft ? "35vw" : "-35vw";
+    const logoTargetSide = alignLeft ? -32 : 32; // Viewport % for logo X position
 
     const ctx = gsap.context(() => {
-      const scrollTriggerConfig = {
+      // Initial text position: Side par blur + low opacity
+      gsap.set(textContent, {
+        x: textStartSide,
+        opacity: 0.35,
+        scale: 0.8,
+        filter: "blur(6px)",
+      });
+
+      ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=250%",
+        end: "+=200%",
         pin: true,
         pinSpacing: true,
-        scrub: 0.3, // Ultra-fast response taake drag na ho
+        scrub: true,
         anticipatePin: 1,
-      };
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const progress = self.progress; // 0 to 1 progress of current section
 
-      gsap.matchMedia().add("(min-width: 768px)", () => {
-        // Text initial state: Text Left Side Screen Edge par halka sa baahar rahega
-        gsap.set(textContent, {
-          opacity: 0.15,
-          scale: 0.85,
-          x: "-45vw", // Screem ke extreme left edge par shift
-          filter: "blur(6px)",
-        });
+          // 1. Text Animation: Side -> Center -> Side
+          let textX = textStartSide;
+          let textOpacity = 0.35;
+          let textBlur = 6;
+          let textScale = 0.8;
 
-        const tl = gsap.timeline({ scrollTrigger: scrollTriggerConfig });
+          // 2. Logo Movement (Direct Realtime Smooth Offset):
+          // Progress 0.0 -> 0.4: Logo Center (0vw) to Side (logoTargetSide)
+          // Progress 0.4 -> 0.6: Hold on Side
+          // Progress 0.6 -> 1.0: Logo Side back to Center (0vw)
+          let currentLogoX = 0;
+          let currentLogoScale = 0.85;
 
-        // Phase 1: Section start par Logo CENTER par lock hoga
-        if (globalFloatingLogo) {
-          if (hideLogo) {
-            tl.to(globalFloatingLogo, { opacity: 0, scale: 0, duration: 0.2 }, 0);
+          if (progress <= 0.4) {
+            const p = progress / 0.4; // Normalized 0 to 1
+            currentLogoX = logoTargetSide * p;
+            currentLogoScale = 0.85 - 0.2 * p;
+
+            // Text Center Transformation
+            textOpacity = 0.35 + 0.65 * p;
+            textBlur = 6 * (1 - p);
+            textScale = 0.8 + 0.2 * p;
+            textX = alignLeft ? `${35 * (1 - p)}vw` : `${-35 * (1 - p)}vw`;
+          } else if (progress > 0.4 && progress <= 0.6) {
+            currentLogoX = logoTargetSide;
+            currentLogoScale = 0.65;
+
+            // Text in Center
+            textOpacity = 1;
+            textBlur = 0;
+            textScale = 1;
+            textX = "0vw";
           } else {
-            tl.set(
-              globalFloatingLogo,
-              {
-                x: "0vw",
-                y: "0vh",
-                scale: 1,
-                opacity: 1,
-              },
-              0
-            );
+            const p = (progress - 0.6) / 0.4; // Normalized 0 to 1
+            currentLogoX = logoTargetSide * (1 - p);
+            currentLogoScale = 0.65 + 0.2 * p;
+
+            // Text Exits to Side
+            textOpacity = 1 - 0.65 * p;
+            textBlur = 6 * p;
+            textScale = 1 - 0.2 * p;
+            textX = alignLeft ? `${35 * p}vw` : `${-35 * p}vw`;
           }
-        }
 
-        // Hold duration: User pehle clear CENTER Logo dekhega
-        tl.to({}, { duration: 0.5 });
+          // Apply Smooth Transform directly on Elements
+          gsap.set(textContent, {
+            x: textX,
+            opacity: textOpacity,
+            scale: textScale,
+            filter: `blur(${textBlur}px)`,
+          });
 
-        // Phase 2: STEP 1 - PEHLE LOGO RIGHT PAR JAYEGA (Zero Text movement yet)
-        if (globalFloatingLogo && !hideLogo) {
-          tl.to(
-            globalFloatingLogo,
-            {
-              x: "30vw", // Logo right side chala gaya
-              scale: 0.7,
-              duration: 1,
-              ease: "power2.inOut",
-            },
-            "logoMove"
-          );
-        }
-
-        // Phase 3: STEP 2 - USKE BAAD TEXT CENTER MEIN AAYEGA (Collision Impossible)
-        tl.to(
-          textContent,
-          {
-            opacity: 1,
-            scale: 1,
-            x: "0vw", // Text Center me aayega
-            filter: "blur(0px)",
-            duration: 1,
-            ease: "power2.out",
-          },
-          "logoMove+=0.3" // Logo move hone ke baad text aayega
-        );
-
-        // Hold for Reading
-        tl.to({}, { duration: 1.5 });
-
-        // Phase 4: Clean Exit
-        tl.to(
-          textContent,
-          {
-            opacity: 0,
-            scale: 0.85,
-            x: "-45vw",
-            filter: "blur(6px)",
-            duration: 0.8,
-          },
-          "exit"
-        );
+          if (!hideLogo) {
+            gsap.set(globalLogo, {
+              x: `${currentLogoX}vw`,
+              scale: currentLogoScale,
+              opacity: 1,
+            });
+          }
+        },
       });
     }, section);
 
     return () => ctx.revert();
-  }, [hideLogo]);
+  }, [hideLogo, alignLeft]);
 
   return (
     <div
       ref={sectionRef}
       className="logo-scroll-section relative w-full h-screen bg-background overflow-hidden flex items-center justify-center px-6 md:px-16"
     >
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 50% at 50% 50%, hsl(var(--primary)/0.06) 0%, transparent 70%)",
+        }}
+      />
+
       <div
         ref={textContentRef}
         className="relative z-10 w-full max-w-xl space-y-6 text-center mx-auto"
@@ -167,7 +173,11 @@ const LogoScrollReveal = ({
               <div
                 className={`absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition duration-500 ${btnGlow}`}
               />
-              <Button size="xl" className={`relative group w-full sm:w-auto ${border}`} asChild>
+              <Button
+                size="xl"
+                className={`relative group w-full sm:w-auto ${border}`}
+                asChild
+              >
                 <Link to={href}>
                   {buttonText}
                   <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />

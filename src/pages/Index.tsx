@@ -53,17 +53,6 @@ const Index = () => {
       border: "hover:border-violet-500/30",
       hideLogo: false,
     },
-    {
-      title: "Get in Touch",
-      subtitle: "Start Your Project",
-      description:
-        "Ready to kickstart your next digital upgrade? Reach out to us and let's craft a solution tailored to your goals.",
-      buttonText: "Contact Us Now",
-      href: "/contact",
-      btnGlow: "bg-emerald-500",
-      border: "hover:border-emerald-500/30",
-      hideLogo: true,
-    },
   ];
 
   return (
@@ -89,7 +78,7 @@ const Index = () => {
         {/* Protocol Stats Section */}
         <StatsSection />
 
-        {/* Alternate Sections with Logo & Text Placement */}
+        {/* Alternate Sections with Synchronized Logo & Text Placement */}
         {sectionsData.map((section, idx) => (
           <div key={idx} className="border-t border-border/40">
             <LogoScrollReveal
@@ -101,7 +90,7 @@ const Index = () => {
               btnGlow={section.btnGlow}
               border={section.border}
               hideLogo={section.hideLogo}
-              alignLeft={idx % 2 === 0} // Zig-zag pattern to avoid overlapping
+              alignLeft={idx % 2 === 0}
             />
           </div>
         ))}

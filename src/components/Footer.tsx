@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Mail,
@@ -6,17 +7,52 @@ import {
   Linkedin,
   Instagram,
   Facebook,
-  ArrowRight,
   Shield,
   Award,
-  CheckCircle2
+  CheckCircle2,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import AnimatedSection from "@/components/AnimatedSection";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Footer = () => {
+  const footerRef = useRef<HTMLDivElement>(null);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    const globalLogo = document.getElementById("main-floating-logo");
+
+    if (!footer || !globalLogo) return;
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: footer,
+        start: "top 80%",
+        end: "bottom bottom",
+        scrub: 0.6,
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          // Moves logo directly to the Far Right Edge and down near the footer
+          const targetX = 42 * progress; // Moves right up to 42vw
+          const targetY = 30 * progress; // Moves down relative to center
+          const targetScale = 0.85 - 0.3 * progress;
+
+          gsap.set(globalLogo, {
+            x: `${targetX}vw`,
+            y: `${targetY}vh`,
+            scale: targetScale,
+            opacity: 1,
+          });
+        },
+      });
+    }, footer);
+
+    return () => ctx.revert();
+  }, []);
 
   const quickLinks = [
     { name: "Home", href: "/" },
@@ -48,7 +84,7 @@ const Footer = () => {
 
   return (
     <AnimatedSection>
-      <footer className="bg-card border-t border-border">
+      <footer ref={footerRef} className="bg-card border-t border-border">
 
         {/* Main Footer Content */}
         <div className="container mx-auto px-4 py-16">
