@@ -19,7 +19,6 @@ import SoftwareDevService from "./pages/services/SoftwareDevService";
 import ITConsultingService from "./pages/services/ITConsultingService";
 import DataAnalyticsService from "./pages/services/DataAnalyticsService";
 import NotFound from "./pages/NotFound";
-
 import CaseStudy from "./pages/CaseStudy";
 
 const queryClient = new QueryClient();

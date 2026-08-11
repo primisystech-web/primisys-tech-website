@@ -16,16 +16,27 @@ const FloatingLogo = () => {
     const el = innerRef.current;
     if (!el) return;
 
-    // Set permanent center origin + 3D perspective
+    // Initial state: large, centered, hidden — then animate in
     gsap.set(el, {
       xPercent: -50,
       yPercent: -50,
       x: 0,
       y: 0,
-      scale: 0.9,
+      scale: 0.6,
       rotateY: 0,
+      opacity: 0,
       transformPerspective: 1200,
       transformStyle: "preserve-3d",
+    });
+
+    // Entrance animation: logo pops in and scales up to a BIGGER initial size
+    gsap.to(el, {
+      scale: 1.1,     // Bigger initial size — prominently visible on page open
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "expo.out",
+      delay: 0.3,
     });
   }, []);
 
@@ -40,19 +51,31 @@ const FloatingLogo = () => {
       }}
     >
       <div id="main-floating-logo" ref={innerRef}>
-        {/* Ambient Glow */}
+        {/* Outer ring glow — pulsing */}
         <div
+          className="animate-glow-pulse"
           style={{
             position: "absolute",
-            inset: "-50px",
+            inset: "-60px",
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, hsl(217 91% 60% / 0.22) 0%, transparent 70%)",
-            filter: "blur(36px)",
+              "radial-gradient(circle, hsl(210 90% 58% / 0.28) 0%, hsl(190 90% 58% / 0.08) 60%, transparent 80%)",
+            filter: "blur(28px)",
             pointerEvents: "none",
           }}
         />
-        <LogoFrames width={260} fps={30} />
+        {/* Inner sharp glow ring */}
+        <div
+          style={{
+            position: "absolute",
+            inset: "-4px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, hsl(210 90% 70% / 0.18) 0%, transparent 65%)",
+            pointerEvents: "none",
+          }}
+        />
+        <LogoFrames width={300} fps={30} />
       </div>
     </div>
   );

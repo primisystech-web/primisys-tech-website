@@ -46,75 +46,103 @@ const LogoScrollReveal = ({
 
     if (!section || !textContent || !globalLogo) return;
 
-    const textStartSide = alignLeft ? "35vw" : "-35vw";
-    const logoTargetSide = alignLeft ? -32 : 32; // Viewport % for logo X position
+    // Text starts CLOSE to the logo (near, not far off-screen)
+    // alignLeft=false → logo goes RIGHT → text starts just to the LEFT of logo
+    // alignLeft=true  → logo goes LEFT  → text starts just to the RIGHT of logo
+    const textNearX = alignLeft ? "13vw" : "-13vw";   // near the logo
+    const textFarX  = alignLeft ? "38vw" : "-38vw";   // exit position (off screen)
+    const logoSideVw = alignLeft ? -30 : 30;           // logo goes this far to side
+
+    // Set initial text: very tiny, close to logo
+    gsap.set(textContent, {
+      x: textNearX,
+      opacity: 0.55,
+      scale: 0.38,
+      filter: "blur(3px)",
+      transformOrigin: "center center",
+    });
 
     const ctx = gsap.context(() => {
-      // Initial text position: Side par blur + low opacity
-      gsap.set(textContent, {
-        x: textStartSide,
-        opacity: 0.35,
-        scale: 0.8,
-        filter: "blur(6px)",
-      });
-
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: "+=200%",
+        end: "+=220%",
         pin: true,
         pinSpacing: true,
         scrub: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onEnter: () => {
+          gsap.killTweensOf(globalLogo);
+          gsap.set(globalLogo, { x: 0, y: 0, scale: 1.1, rotateY: 0, opacity: 1 });
+        },
+        onEnterBack: () => {
+          gsap.killTweensOf(globalLogo);
+          gsap.set(globalLogo, { x: 0, y: 0, scale: 1.1, rotateY: 0, opacity: 1 });
+        },
         onUpdate: (self) => {
-          const progress = self.progress; // 0 to 1 progress of current section
+          const p = self.progress;
 
-          // 1. Text Animation: Side -> Center -> Side
-          let textX = textStartSide;
-          let textOpacity = 0.35;
-          let textBlur = 6;
-          let textScale = 0.8;
+          // Quadratic ease-in-out helper
+          const eio = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 
-          // 2. Logo Movement (Direct Realtime Smooth Offset):
-          // Progress 0.0 -> 0.4: Logo Center (0vw) to Side (logoTargetSide)
-          // Progress 0.4 -> 0.6: Hold on Side
-          // Progress 0.6 -> 1.0: Logo Side back to Center (0vw)
-          let currentLogoX = 0;
-          let currentLogoScale = 0.85;
+          let logoX = 0;
+          let logoScale = 1.1;
+          let logoRotateY = 0;
 
-          if (progress <= 0.4) {
-            const p = progress / 0.4; // Normalized 0 to 1
-            currentLogoX = logoTargetSide * p;
-            currentLogoScale = 0.85 - 0.2 * p;
+          let textX = textNearX;
+          let textOpacity = 0.55;
+          let textScale = 0.38;
+          let textBlur = 3;
 
-            // Text Center Transformation
-            textOpacity = 0.35 + 0.65 * p;
-            textBlur = 6 * (1 - p);
-            textScale = 0.8 + 0.2 * p;
-            textX = alignLeft ? `${35 * (1 - p)}vw` : `${-35 * (1 - p)}vw`;
-          } else if (progress > 0.4 && progress <= 0.6) {
-            currentLogoX = logoTargetSide;
-            currentLogoScale = 0.65;
+          if (p <= 0.07) {
+            // ── Phase 0: Opening hold ──────────────────────────────
+            // Logo big at center, text tiny & close to logo
+            logoX = 0; logoScale = 1.1;
+            textX = textNearX; textOpacity = 0.55; textScale = 0.38; textBlur = 3;
 
-            // Text in Center
-            textOpacity = 1;
-            textBlur = 0;
-            textScale = 1;
-            textX = "0vw";
+          } else if (p <= 0.46) {
+            // ── Phase 1: Logo → side (shrinks), text → center (expands) ─
+            const t = eio((p - 0.07) / 0.39);
+
+            logoX = logoSideVw * t;
+            logoScale = 1.1 - 0.42 * t;           // 1.1 → 0.68
+            logoRotateY = (alignLeft ? -12 : 12) * t;
+
+            // Text slides from near-logo to center and expands
+            const nearVw = alignLeft ? 13 : -13;
+            textX = `${nearVw * (1 - t)}vw`;
+            textOpacity = 0.55 + 0.45 * t;         // 0.55 → 1
+            textScale = 0.38 + 0.62 * t;           // 0.38 → 1
+            textBlur = 3 * (1 - t);                // 3 → 0
+
+          } else if (p <= 0.60) {
+            // ── Phase 2: Reading hold ─────────────────────────────
+            logoX = logoSideVw; logoScale = 0.68; logoRotateY = alignLeft ? -12 : 12;
+            textX = "0vw"; textOpacity = 1; textScale = 1; textBlur = 0;
+
+          } else if (p <= 0.93) {
+            // ── Phase 3: Text → far side (shrinks), logo → center (grows) ─
+            const t = eio((p - 0.60) / 0.33);
+
+            logoX = logoSideVw * (1 - t);
+            logoScale = 0.68 + 0.42 * t;           // 0.68 → 1.1
+            logoRotateY = (alignLeft ? -12 : 12) * (1 - t);
+
+            // Text exits to FAR side (off screen) — not near logo
+            const farVw = alignLeft ? 38 : -38;
+            textX = `${farVw * t}vw`;
+            textOpacity = 1 - 0.75 * t;            // 1 → 0.25
+            textScale = 1 - 0.62 * t;              // 1 → 0.38
+            textBlur = 3 * t;
+
           } else {
-            const p = (progress - 0.6) / 0.4; // Normalized 0 to 1
-            currentLogoX = logoTargetSide * (1 - p);
-            currentLogoScale = 0.65 + 0.2 * p;
-
-            // Text Exits to Side
-            textOpacity = 1 - 0.65 * p;
-            textBlur = 6 * p;
-            textScale = 1 - 0.2 * p;
-            textX = alignLeft ? `${35 * p}vw` : `${-35 * p}vw`;
+            // ── Phase 4: Closing hold ─────────────────────────────
+            // Logo back at center big, text off screen far side
+            logoX = 0; logoScale = 1.1; logoRotateY = 0;
+            textX = textFarX; textOpacity = 0.25; textScale = 0.38; textBlur = 3;
           }
 
-          // Apply Smooth Transform directly on Elements
           gsap.set(textContent, {
             x: textX,
             opacity: textOpacity,
@@ -124,8 +152,9 @@ const LogoScrollReveal = ({
 
           if (!hideLogo) {
             gsap.set(globalLogo, {
-              x: `${currentLogoX}vw`,
-              scale: currentLogoScale,
+              x: `${logoX}vw`,
+              scale: logoScale,
+              rotateY: logoRotateY,
               opacity: 1,
             });
           }
@@ -141,46 +170,59 @@ const LogoScrollReveal = ({
       ref={sectionRef}
       className="logo-scroll-section relative w-full h-screen bg-background overflow-hidden flex items-center justify-center px-6 md:px-16"
     >
+      {/* Aurora ambient background */}
+      <div className="aurora-bg absolute inset-0 pointer-events-none" />
+
+      {/* Faint grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background:
-            "radial-gradient(ellipse 55% 50% at 50% 50%, hsl(var(--primary)/0.06) 0%, transparent 70%)",
+          backgroundImage: `
+            linear-gradient(hsl(210 90% 58% / 0.07) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(210 90% 58% / 0.07) 1px, transparent 1px)
+          `,
+          backgroundSize: "72px 72px",
+          maskImage: "radial-gradient(ellipse 65% 55% at 50% 50%, black 20%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 65% 55% at 50% 50%, black 20%, transparent 100%)",
         }}
       />
 
+      {/* Text content */}
       <div
         ref={textContentRef}
-        className="relative z-10 w-full max-w-xl space-y-6 text-center mx-auto"
+        className="relative z-10 w-full max-w-xl p-8 md:p-10 rounded-3xl bg-card/40 backdrop-blur-xl border border-primary/20 shadow-[0_0_50px_rgba(59,130,246,0.12)] space-y-6 text-center mx-auto transition-all duration-500 hover:border-primary/40 hover:shadow-[0_0_60px_rgba(59,130,246,0.2)]"
       >
         {subtitle && (
-          <span className="text-xs md:text-sm font-bold text-primary tracking-widest uppercase block mb-2">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold tracking-wider uppercase shadow-[0_0_15px_rgba(59,130,246,0.15)] mx-auto">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
             {subtitle}
-          </span>
+          </div>
         )}
 
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-foreground block tracking-tight">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-foreground tracking-tight">
           {title}
         </h2>
 
-        <p className="text-base md:text-lg text-muted-foreground leading-relaxed block max-w-lg mx-auto">
+        <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-lg mx-auto">
           {description}
         </p>
 
-        <div className="cta-buttons flex flex-col sm:flex-row items-center justify-center gap-4 pt-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
           {buttonText && href && (
-            <div className="relative group inline-block">
-              <div
-                className={`absolute -inset-1 rounded-full opacity-0 group-hover:opacity-100 blur-xl transition duration-500 ${btnGlow}`}
-              />
+            <div className="relative group inline-block w-full sm:w-auto">
+              <div className={`absolute -inset-1.5 rounded-full opacity-0 group-hover:opacity-70 blur-xl transition-all duration-500 ${btnGlow}`} />
               <Button
                 size="xl"
-                className={`relative group w-full sm:w-auto ${border}`}
+                className={`relative w-full sm:w-auto ${border} overflow-hidden transition-all duration-300 hover:scale-[1.04] hover:shadow-glow font-semibold`}
                 asChild
               >
                 <Link to={href}>
                   {buttonText}
-                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 </Link>
               </Button>
             </div>
@@ -190,7 +232,7 @@ const LogoScrollReveal = ({
             <Button
               variant="outline"
               size="xl"
-              className="w-full sm:w-auto bg-background hover:bg-accent border border-border"
+              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/15 hover:border-primary/50 text-foreground transition-all duration-300 hover:scale-[1.04] font-semibold"
               asChild
             >
               <Link to={secondaryHref}>{secondaryButtonText}</Link>
@@ -199,11 +241,11 @@ const LogoScrollReveal = ({
         </div>
 
         {serviceTags && serviceTags.length > 0 && (
-          <div className="service-tags flex flex-wrap items-center justify-center gap-2 pt-3">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2 border-t border-border/40">
             {serviceTags.map((service) => (
               <span
                 key={service}
-                className="px-3 py-1.5 text-xs md:text-sm text-muted-foreground bg-muted/40 rounded-md border border-border/60"
+                className="px-3.5 py-1.5 text-xs font-semibold text-muted-foreground hover:text-primary bg-white/5 hover:bg-primary/15 rounded-full border border-white/10 hover:border-primary/50 transition-all duration-300 shadow-sm cursor-pointer backdrop-blur-md hover:scale-105"
               >
                 {service}
               </span>

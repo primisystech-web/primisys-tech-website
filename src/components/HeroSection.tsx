@@ -5,14 +5,44 @@ export const HeroSection = () => {
     <>
       {/* ── Hero Section (Pinned GSAP Reveal) ── */}
       <div className="relative pt-20">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[900px] h-[700px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+        {/* Multi-layer animated background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/8 via-transparent to-transparent pointer-events-none" />
+
+        {/* Large soft blob — top left */}
+        <div
+          className="absolute pointer-events-none animate-float"
+          style={{
+            top: "5%",
+            left: "-10%",
+            width: "500px",
+            height: "500px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, hsl(210 90% 58% / 0.12) 0%, transparent 65%)",
+            filter: "blur(60px)",
+            animationDelay: "0s",
+          }}
+        />
+
+        {/* Smaller blob — bottom right */}
+        <div
+          className="absolute pointer-events-none animate-float animation-delay-300"
+          style={{
+            bottom: "10%",
+            right: "-5%",
+            width: "350px",
+            height: "350px",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, hsl(190 90% 58% / 0.10) 0%, transparent 65%)",
+            filter: "blur(50px)",
+            animationDelay: "2s",
+          }}
+        />
 
         <LogoScrollReveal
           title={
             <>
               Building Tomorrow's <br />
-              <span className="text-primary">Technology Today</span>
+              <span className="text-gradient">Technology Today</span>
             </>
           }
           description="We transform businesses through intelligent software solutions, leveraging AI, data analytics, and modern development practices to drive innovation and growth."

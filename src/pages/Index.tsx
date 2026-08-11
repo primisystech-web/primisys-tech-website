@@ -6,6 +6,8 @@ import PageTransition from "@/components/PageTransition";
 import Footer from "@/components/Footer";
 import FloatingLogo from "@/components/FloatingLogo";
 import LogoScrollReveal from "@/components/LogoScrollReveal";
+import CursorGlow from "@/components/CursorGlow";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 const Index = () => {
   const sectionsData = [
@@ -64,6 +66,9 @@ const Index = () => {
           content="Primisys Tech - Leading provider of Software Development, AI & Data Solutions, and IT Consulting services."
         />
       </Helmet>
+
+      {/* Top scroll progress indicator */}
+      <ScrollProgressBar />
 
       <div className="min-h-screen bg-background overflow-x-hidden">
         {/* Main Floating Logo */}
